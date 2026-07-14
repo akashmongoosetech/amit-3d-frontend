@@ -9,16 +9,16 @@ import { CTASection } from "@/components/site/CTASection";
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing — Lumera Creative Studio" },
+      { title: "Pricing — Verto3D 3D Modeling & Visualization" },
       {
         name: "description",
         content:
-          "Flexible design plans — monthly retainers and one-off projects designed to scale with your brand.",
+          "Flexible 3D modeling plans — starter and professional packages designed to scale with your product development needs.",
       },
-      { property: "og:title", content: "Pricing — Lumera Creative Studio" },
+      { property: "og:title", content: "Pricing — Verto3D 3D Modeling & Visualization" },
       {
         property: "og:description",
-        content: "Monthly retainers and one-off projects designed to scale with you.",
+        content: "3D modeling plans for businesses of every size — from startups to enterprise.",
       },
     ],
   }),
@@ -39,8 +39,8 @@ function PricingPage() {
         </h1>
         <Reveal delay={0.2}>
           <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
-            Tailored, flexible plans designed to scale with you — whether you're just starting out
-            or growing fast.
+            Flexible 3D modeling packages designed to scale with your business — from startups to
+            enterprise product teams.
           </p>
         </Reveal>
       </section>
@@ -57,7 +57,7 @@ function PricingPage() {
               Questions, <span className="serif-accent text-accent">answered</span>
             </>
           }
-          description="Quick answers about working with us and our approach."
+          description="Quick answers about our 3D modeling services, pricing and process."
         />
         <FAQ />
       </section>

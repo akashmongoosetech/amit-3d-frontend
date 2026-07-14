@@ -54,9 +54,9 @@ export function Nav() {
             <Link
               to="/"
               className="heading-display text-lg tracking-tight"
-              aria-label="Lumera home"
+              aria-label="Verto3D home"
             >
-              LUMERA<span className="align-super text-[0.55em] text-muted-foreground">™</span>
+              VERTO<span className="align-super text-[0.55em] text-muted-foreground">3D</span>
             </Link>
 
             <div className="hidden items-center gap-1 md:flex">
@@ -78,7 +78,7 @@ export function Nav() {
                   to="/contact"
                   className="btn-pill bg-primary px-5 py-2.5 text-sm text-primary-foreground transition-colors duration-300 hover:bg-accent hover:text-accent-foreground"
                 >
-                  Let's talk
+                  Get a quote
                   <ArrowUpRight className="size-4" />
                 </Link>
               </Magnetic>
@@ -125,7 +125,7 @@ export function Nav() {
                   to="/contact"
                   className="btn-pill mt-2 justify-center bg-primary px-5 py-3 text-primary-foreground"
                 >
-                  Let's talk
+                  Get a quote
                   <ArrowUpRight className="size-4" />
                 </Link>
               </div>

@@ -1,37 +1,16 @@
 import { defineConfig } from "vite";
-import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import tailwindcss from "@tailwindcss/vite";
-import tsConfigPaths from "vite-tsconfig-paths";
 import react from "@vitejs/plugin-react";
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 export default defineConfig({
   plugins: [
+    TanStackRouterVite({ autoCodeSplitting: true }),
     tailwindcss(),
-    tsConfigPaths({ projects: ["./tsconfig.json"] }),
-    ...tanstackStart({
-      server: { entry: "server" },
-    }),
     react(),
   ],
   resolve: {
+    tsconfigPaths: true,
     alias: { "@": `${process.cwd()}/src` },
-    dedupe: [
-      "react",
-      "react-dom",
-      "react/jsx-runtime",
-      "react/jsx-dev-runtime",
-      "@tanstack/react-query",
-      "@tanstack/query-core",
-    ],
-  },
-  optimizeDeps: {
-    include: [
-      "react",
-      "react-dom",
-      "react-dom/client",
-      "react/jsx-runtime",
-      "react/jsx-dev-runtime",
-    ],
-    ignoreOutdatedRequests: true,
   },
 });

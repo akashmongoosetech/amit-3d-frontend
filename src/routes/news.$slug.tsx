@@ -15,18 +15,18 @@ export const Route = createFileRoute("/news/$slug")({
   head: ({ loaderData, params }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Article not found — Lumera" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Article not found — Verto3D" }, { name: "robots", content: "noindex" }],
       };
     }
     const { article } = loaderData;
     const url = `/news/${params.slug}`;
     return {
       meta: [
-        { title: `${article.title} — Lumera News` },
+        { title: `${article.title} — Verto3D Insights` },
         { name: "description", content: article.excerpt },
         { name: "keywords", content: article.keywords.join(", ") },
         { name: "author", content: article.author },
-        { property: "og:title", content: `${article.title} — Lumera News` },
+        { property: "og:title", content: `${article.title} — Verto3D Insights` },
         { property: "og:description", content: article.excerpt },
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
@@ -56,7 +56,7 @@ export const Route = createFileRoute("/news/$slug")({
             },
             publisher: {
               "@type": "Organization",
-              name: "Lumera",
+              name: "Verto3D",
               logo: { "@type": "ImageObject", url: "/favicon.ico" },
             },
             mainEntityOfPage: { "@type": "WebPage", "@id": url },
@@ -147,7 +147,7 @@ function ArticlePage() {
         <div className="overflow-hidden rounded-[2rem]">
           <img
             src={article.image}
-            alt={article.title}
+            alt={`${article.title} — feature image for Verto3D article`}
             width={1280}
             height={853}
             className="aspect-[2/1] w-full object-cover"

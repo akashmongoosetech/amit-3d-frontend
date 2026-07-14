@@ -7,36 +7,38 @@ import { Reveal } from "./Reveal";
 
 const plans = [
   {
-    name: "Monthly retainer",
-    popular: true,
+    name: "Starter",
+    popular: false,
     description:
-      "Flexible billing and clear deliverables — perfect for fast-moving brands that need consistent, high-quality design on tap.",
-    monthly: 4900,
-    yearly: 4200,
+      "Perfect for startups and small product lines that need professional 3D assets without a long-term commitment.",
+    monthly: 1900,
+    yearly: 1600,
     priceNote: { monthly: "Billed monthly", yearly: "Per month, billed yearly" },
     features: [
-      "Up to 2 active requests at a time",
-      "Delivery within ~48 hours per request",
-      "Pause or cancel anytime",
-      "Dedicated senior designer on every project",
+      "Up to 5 models per month",
+      "Standard quality rendering",
+      "2 revision rounds per model",
+      "72-hour typical turnaround",
     ],
     cta: "Get started",
   },
   {
-    name: "One-off project",
-    popular: false,
+    name: "Professional",
+    popular: true,
     description:
-      "Clear scope, set timeline — ideal for one-off projects that need sharp execution without a long-term commitment.",
-    monthly: 9500,
-    yearly: 9500,
-    priceNote: { monthly: "Starts at", yearly: "Starts at" },
+      "For growing teams and regular product launches that need photorealistic quality and faster turnaround on every asset.",
+    monthly: 4500,
+    yearly: 3800,
+    priceNote: { monthly: "Billed monthly", yearly: "Per month, billed yearly" },
     features: [
-      "Fixed scope, flat price",
-      "Clear timeline and milestones",
-      "Custom one-off design requests",
-      "Great for launches, pitches or rebrands",
+      "Up to 12 models per month",
+      "Photorealistic PBR rendering",
+      "3 revision rounds per model",
+      "48-hour typical turnaround",
+      "Animation-ready models",
+      "Dedicated project manager",
     ],
-    cta: "Book a call",
+    cta: "Get started",
   },
 ];
 

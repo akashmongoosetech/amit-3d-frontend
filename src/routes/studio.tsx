@@ -11,16 +11,16 @@ import { CTASection } from "@/components/site/CTASection";
 export const Route = createFileRoute("/studio")({
   head: () => ({
     meta: [
-      { title: "Studio — Lumera Creative Studio" },
+      { title: "Studio — Verto3D 3D Modeling & Visualization" },
       {
         name: "description",
         content:
-          "Meet the team, values and process behind Lumera — a creative studio building brands for ambitious founders.",
+          "Meet the team, values and process behind Verto3D — a professional 3D modeling studio serving manufacturing, architecture and engineering clients.",
       },
-      { property: "og:title", content: "Studio — Lumera Creative Studio" },
+      { property: "og:title", content: "Studio — Verto3D 3D Modeling & Visualization" },
       {
         property: "og:description",
-        content: "The team, values and process behind Lumera.",
+        content: "The team, values and process behind Verto3D.",
       },
     ],
   }),
@@ -42,13 +42,14 @@ function StudioPage() {
             </p>
           </Reveal>
           <h1 className="heading-display mt-6 max-w-4xl text-5xl md:text-7xl">
-            <StaggerText text="A small studio with" />{" "}
-            <span className="serif-accent text-accent">outsized ambition</span>
+            <StaggerText text="A team of 3D specialists" />{" "}
+            <span className="serif-accent text-accent">with industrial experience</span>
           </h1>
           <Reveal delay={0.2}>
             <p className="mt-7 max-w-lg text-base leading-relaxed text-muted-foreground">
-              Since 2018 we've transformed underwhelming brands into standout experiences — built to
-              reflect the quality, ambition and greatness of the people behind them.
+              Since 2018 we've been delivering precision 3D models, photorealistic visualizations
+              and industrial-grade digital assets to clients across manufacturing, architecture,
+              automotive and product design.
             </p>
           </Reveal>
         </div>
@@ -56,7 +57,7 @@ function StudioPage() {
           <div className="overflow-hidden rounded-[2rem]">
             <img
               src={studioTeam}
-              alt="The Lumera team working around a table of printed design work"
+              alt="Verto3D team reviewing a 3D model on screen in a modern studio workspace"
               width={1280}
               height={853}
               className="aspect-[16/9] w-full object-cover"
@@ -72,7 +73,7 @@ function StudioPage() {
               <span className="text-accent">⊹</span> Our story
             </p>
             <h2 className="heading-display mt-4 text-4xl md:text-5xl">
-              From two desks to <span className="serif-accent text-accent">two continents</span>
+              From engineering roots to <span className="serif-accent text-accent">global reach</span>
             </h2>
           </Reveal>
           <Reveal
@@ -80,18 +81,19 @@ function StudioPage() {
             className="space-y-5 text-muted-foreground md:col-span-6 md:col-start-7"
           >
             <p className="leading-relaxed">
-              Lumera started as two designers sharing a studio in Los Angeles and a conviction:
-              founders deserve the same calibre of design thinking that global brands get — without
-              the agency bloat.
+              Verto3D started with a simple observation: most product development teams waste weeks
+              on physical prototypes and reshoots because the 3D assets they need don't exist yet.
+              We set out to change that — building a studio where engineering precision meets visual
+              excellence.
             </p>
             <p className="leading-relaxed">
-              Today we're a distributed senior team working across identity, product and content. No
-              account managers, no juniors learning on your budget. The people who pitch the work
-              make the work.
+              Today we're a distributed team of 3D specialists, CAD engineers and CGI artists
+              working across industrial design, architectural visualization and product rendering.
+              No account layers, no junior-only workflows. The people who scope the work do the work.
             </p>
             <p className="leading-relaxed">
-              We keep the roster deliberately small — a handful of partners at a time — so every
-              project gets the attention it deserves.
+              We keep our roster focused — partnering with a select number of clients at a time —
+              so every project receives the technical attention and creative care it deserves.
             </p>
           </Reveal>
         </div>
@@ -103,7 +105,7 @@ function StudioPage() {
             tag="Values"
             title={
               <>
-                What we <span className="serif-accent text-accent">believe</span>
+                What drives <span className="serif-accent text-accent">us</span>
               </>
             }
           />
@@ -126,10 +128,10 @@ function StudioPage() {
           tag="Team"
           title={
             <>
-              The people behind <span className="serif-accent text-accent">the work</span>
+              The people behind <span className="serif-accent text-accent">the models</span>
             </>
           }
-          description="Senior only. Everyone you meet is someone who ships."
+          description="Experienced 3D artists, engineers and project managers. Everyone you meet ships work."
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {team.map((m, i) => (
@@ -155,7 +157,7 @@ function StudioPage() {
                 Clear and <span className="serif-accent text-accent">intentional</span>
               </>
             }
-            description="From first idea to final launch, every step is deliberate."
+            description="From initial brief to final delivery — every step is planned and executed with precision."
           />
           <div className="space-y-16">
             {process.map((phase) => (
@@ -211,7 +213,7 @@ function StudioPage() {
             to="/contact"
             className="btn-pill bg-primary px-7 py-3.5 text-sm text-primary-foreground hover:bg-accent hover:text-accent-foreground"
           >
-            Work with us <ArrowUpRight className="size-4" />
+            Start a project <ArrowUpRight className="size-4" />
           </Link>
         </Reveal>
       </section>

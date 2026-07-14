@@ -24,11 +24,11 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-12">
           <Reveal className="md:col-span-5">
             <p className="heading-display text-2xl">
-              LUMERA<span className="align-super text-[0.55em] text-muted-foreground">™</span>
+              VERTO<span className="align-super text-[0.55em] text-muted-foreground">3D</span>
             </p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              A creative studio for founders. We partner with brands to create digital design that
-              drives conversion and commands attention.
+              A professional 3D modeling and visualization studio serving manufacturing, architecture,
+              product design and engineering clients worldwide.
             </p>
             <form
               className="mt-8 flex max-w-sm items-center gap-2"
@@ -93,10 +93,10 @@ export function Footer() {
             </ul>
             <p className="mt-8 text-xs uppercase tracking-[0.2em] text-muted-foreground">Contact</p>
             <a
-              href="mailto:hello@lumera.studio"
+              href="mailto:hello@verto3d.com"
               className="link-underline mt-3 inline-block text-sm text-foreground/80"
             >
-              hello@lumera.studio
+              hello@verto3d.com
             </a>
           </Reveal>
         </div>
@@ -104,7 +104,7 @@ export function Footer() {
 
       <div className="container-site pb-6">
         <div className="flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} Lumera Studio. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Verto3D Studio. All rights reserved.</p>
           <p>Los Angeles — Worldwide</p>
         </div>
       </div>
@@ -113,7 +113,7 @@ export function Footer() {
         aria-hidden
         className="heading-display pointer-events-none select-none whitespace-nowrap text-center text-[22vw] leading-none text-foreground/[0.04]"
       >
-        LUMERA
+        VERTO3D
       </p>
     </footer>
   );

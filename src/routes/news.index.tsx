@@ -8,15 +8,15 @@ import { CTASection } from "@/components/site/CTASection";
 export const Route = createFileRoute("/news/")({
   head: () => ({
     meta: [
-      { title: "News — Lumera Creative Studio" },
+      { title: "Insights — Verto3D 3D Modeling & Visualization" },
       {
         name: "description",
-        content: "Fresh reads and sharp takes — stories, ideas and updates from Lumera Studio.",
+        content: "Industry insights, technical guides and expert takes on 3D modeling, product visualization, architectural rendering and CGI from Verto3D.",
       },
-      { property: "og:title", content: "News — Lumera Creative Studio" },
+      { property: "og:title", content: "Insights — Verto3D 3D Modeling & Visualization" },
       {
         property: "og:description",
-        content: "Stories, ideas and updates from our world.",
+        content: "Thought leadership, trends and technical guides from the Verto3D team.",
       },
     ],
   }),
@@ -31,18 +31,18 @@ function NewsPage() {
       <section className="container-site pt-40 md:pt-48">
         <Reveal>
           <p className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            <span className="text-accent">⊹</span> Latest news
+            <span className="text-accent">⊹</span> Latest insights
           </p>
         </Reveal>
-        <h1 className="heading-display mt-6 max-w-3xl text-5xl md:text-7xl">
-          <StaggerText text="Fresh reads," />{" "}
-          <span className="serif-accent text-accent">sharp takes</span>
-        </h1>
-        <Reveal delay={0.2}>
-          <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
-            Stories, ideas and updates from our world.
-          </p>
-        </Reveal>
+          <h1 className="heading-display mt-6 max-w-3xl text-5xl md:text-7xl">
+            <StaggerText text="Industry insights," />{" "}
+            <span className="serif-accent text-accent">expert takes</span>
+          </h1>
+          <Reveal delay={0.2}>
+            <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
+              Thought leadership, technical guides and trends from the Verto3D team.
+            </p>
+          </Reveal>
       </section>
 
       <section className="container-site py-16 md:py-24">

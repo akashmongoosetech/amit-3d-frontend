@@ -18,32 +18,32 @@ import { FAQ } from "@/components/site/FAQ";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Lumera — Creative Studio for Founders" },
+      { title: "Verto3D — Professional 3D Modeling & Visualization Studio" },
       {
         name: "description",
         content:
-          "Brand identity, product design and digital experiences that drive conversion for founders. Selected work, pricing, and studio news from Lumera.",
+          "Industry-grade 3D modeling, product visualization, architectural rendering and industrial design services. Photorealistic 3D assets for manufacturing, architecture and e-commerce.",
       },
-      { property: "og:title", content: "Lumera — Creative Studio for Founders" },
+      { property: "og:title", content: "Verto3D — 3D Modeling & Visualization Studio" },
       { property: "og:url", content: "/" },
       { property: "og:image", content: heroPortrait },
       { name: "twitter:image", content: heroPortrait },
     ],
     links: [
       { rel: "canonical", href: "/" },
-      { rel: "preload", as: "image", href: heroPortrait, fetchpriority: "high" },
+      { rel: "preload", as: "image", href: heroPortrait, fetchPriority: "high" },
     ],
   }),
   component: Index,
 });
 
 const disciplines = [
-  "Product design",
-  "Content strategy",
-  "Brand identity",
-  "Front-end development",
-  "Art direction",
-  "Motion design",
+  "3D Product Modeling",
+  "Architectural Visualization",
+  "Industrial Design",
+  "CGI Animation",
+  "CAD Engineering",
+  "Digital Twins",
 ];
 
 function Hero() {
@@ -68,21 +68,21 @@ function Hero() {
             </p>
           </Reveal>
           <h1 className="heading-display mt-6 text-5xl sm:text-7xl lg:text-8xl">
-            <StaggerText text="Creative studio" />
+            <StaggerText text="Precision 3D modeling" />
             <br />
-            <span className="serif-accent text-accent">for founders</span>
+            <span className="serif-accent text-accent">for every industry</span>
           </h1>
           <Reveal delay={0.25}>
             <p className="mt-7 max-w-md text-base leading-relaxed text-muted-foreground">
-              We partner with brands to create digital design that drives conversion and commands
-              attention.
+              From product design to architectural visualization — we create photorealistic 3D
+              assets that accelerate development, reduce costs and elevate your brand.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Link
                 to="/pricing"
                 className="btn-pill bg-primary px-7 py-3.5 text-sm text-primary-foreground hover:bg-accent hover:text-accent-foreground"
               >
-                See pricing
+                View plans
                 <ArrowUpRight className="size-4" />
               </Link>
               <Link
@@ -100,7 +100,7 @@ function Hero() {
               </span>
               <span className="h-px flex-1 bg-border" />
               <span>
-                95+ <span className="opacity-60">clients worldwide</span>
+                500+ <span className="opacity-60">projects delivered</span>
               </span>
             </div>
           </Reveal>
@@ -114,8 +114,9 @@ function Hero() {
             className="relative overflow-hidden rounded-[2rem]"
           >
             <img
+              // src={heroPortrait}
               src={heroPortrait}
-              alt="Editorial portrait from a Lumera brand campaign"
+              alt="Photorealistic 3D product render — a precision-modeled component on studio lighting"
               width={896}
               height={1280}
               fetchPriority="high"
@@ -126,12 +127,12 @@ function Hero() {
 
             <div className="glass-panel absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-2xl px-5 py-4">
               <div>
-                <p className="text-sm font-medium">Selected work</p>
-                <p className="text-xs text-muted-foreground">2018 — 2026</p>
+                <p className="text-sm font-medium">Featured projects</p>
+                <p className="text-xs text-muted-foreground">Industrial · Architecture · Product</p>
               </div>
               <Link
                 to="/projects"
-                aria-label="View selected work"
+                aria-label="View our portfolio"
                 className="rounded-full bg-primary p-2.5 text-primary-foreground transition-transform duration-300 hover:scale-110"
               >
                 <ArrowUpRight className="size-4" />
@@ -166,7 +167,7 @@ function About() {
         </p>
       </Reveal>
       <h2 className="heading-display mt-6 max-w-4xl text-3xl leading-tight md:text-5xl">
-        <StaggerText text="We help brands grow with strategic design that's thoughtful, visually bold, and built to make an impression." />
+        <StaggerText text="We help businesses bring products to market faster with precision 3D assets that engineering and marketing teams both trust." />
       </h2>
       <div className="mt-14 grid gap-6 md:grid-cols-3">
         <Reveal className="rounded-3xl border border-border bg-card/50 p-8">
@@ -174,24 +175,24 @@ function About() {
             <Counter value={40} suffix="%" />
           </p>
           <p className="mt-3 text-sm text-muted-foreground">
-            Average increase in conversions across our client projects
+            Average reduction in product development cycles using our 3D models
           </p>
         </Reveal>
         <Reveal delay={0.1} className="rounded-3xl border border-border bg-card/50 p-8">
           <p className="heading-display text-5xl text-accent">
-            <Counter value={12} prefix="₹" suffix="M" />
+            <Counter value={98} suffix="%" />
           </p>
           <p className="mt-3 text-sm text-muted-foreground">
-            Raised by the brands we've partnered with
+            Client satisfaction rate across 500+ completed projects
           </p>
         </Reveal>
         <Reveal delay={0.2} className="rounded-3xl border border-border bg-card/50 p-8">
           <p className="text-sm italic leading-relaxed text-foreground/90">
-            "Thoughtful digital experiences, strong brand identities, and opportunities that drive
-            real results."
+            "They didn't just make our product look good — every polygon had a purpose, and the
+            models were manufacturing-ready straight out of review."
           </p>
-          <p className="mt-4 text-sm font-medium">Akash Raikwar</p>
-          <p className="text-xs text-muted-foreground">CEO, Fieldnote</p>
+          <p className="mt-4 text-sm font-medium">Taylor Reyes</p>
+          <p className="text-xs text-muted-foreground">Director of Product, Contour Works</p>
         </Reveal>
       </div>
     </section>
@@ -202,13 +203,13 @@ function FeaturedProjects() {
   return (
     <section className="container-site py-20 md:py-28">
       <SectionHeading
-        tag="Latest projects"
+        tag="Portfolio"
         title={
           <>
-            Latest <span className="serif-accent text-accent">projects</span>
+            Featured <span className="serif-accent text-accent">projects</span>
           </>
         }
-        description="This is the story behind the story — told in images that capture how it all came together."
+        description="A selection of our 3D modeling and visualization work across industries."
         action={
           <Link
             to="/projects"
@@ -235,13 +236,13 @@ function Services() {
       <div className="container-site">
         <SectionHeading
           tag="Services"
-          title="Built to help founders grow smarter and move faster"
+          title="Comprehensive 3D services for every industry"
           action={
             <Link
               to="/pricing"
               className="btn-pill border border-border px-6 py-3 text-sm hover:border-foreground"
             >
-              See pricing <ArrowUpRight className="size-4" />
+              View plans <ArrowUpRight className="size-4" />
             </Link>
           }
         />
@@ -316,10 +317,10 @@ function Stats() {
         tag="Stats & facts"
         title={
           <>
-            Proof in <span className="serif-accent text-accent">numbers</span>
+            Results in <span className="serif-accent text-accent">numbers</span>
           </>
         }
-        description="Because good design should perform."
+        description="Quality, precision and speed — measured and delivered."
       />
       <div className="grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((s, i) => (
@@ -346,13 +347,13 @@ function NewsPreview() {
   return (
     <section className="container-site py-20 md:py-28">
       <SectionHeading
-        tag="Latest news"
+        tag="Latest insights"
         title={
           <>
-            Fresh reads, <span className="serif-accent text-accent">sharp takes</span>
+            Industry insights, <span className="serif-accent text-accent">expert takes</span>
           </>
         }
-        description="Stories, ideas and updates from our world."
+        description="Thought leadership, trends and technical guides from our team."
         action={
           <Link
             to="/news"
@@ -389,7 +390,7 @@ function Index() {
               Flexible <span className="serif-accent text-accent">plans</span>
             </>
           }
-          description="Tailored plans designed to scale with you — whether you're starting out or growing fast."
+          description="Flexible 3D modeling packages designed to scale with your business — from startups to enterprise."
         />
         <PricingSection />
       </section>
@@ -403,7 +404,7 @@ function Index() {
               Questions, <span className="serif-accent text-accent">answered</span>
             </>
           }
-          description="Quick answers about working with us and our approach."
+          description="Quick answers about our 3D modeling services, process and delivery."
         />
         <FAQ />
       </section>

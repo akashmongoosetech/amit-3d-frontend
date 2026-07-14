@@ -17,25 +17,25 @@ export function CTASection() {
         </Reveal>
         <h2 className="heading-display mx-auto mt-5 max-w-3xl text-4xl md:text-6xl">
           <StaggerText text="Let's build something" />{" "}
-          <span className="serif-accent text-accent">unforgettable</span>
+          <span className="serif-accent text-accent">extraordinary</span>
         </h2>
         <Reveal delay={0.15}>
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Tell us where your brand is going. We'll design the way it gets there.
+            Tell us about your project. We'll create the 3D assets you need.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/contact"
               className="btn-pill bg-primary px-7 py-3.5 text-sm text-primary-foreground hover:bg-accent hover:text-accent-foreground"
             >
-              Start a project
+              Get a quote
               <ArrowUpRight className="size-4" />
             </Link>
             <Link
               to="/pricing"
               className="btn-pill border border-border px-7 py-3.5 text-sm hover:border-foreground"
             >
-              See pricing
+              View plans
             </Link>
           </div>
         </Reveal>

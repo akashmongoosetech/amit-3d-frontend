@@ -14,15 +14,15 @@ export const Route = createFileRoute("/projects/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Project not found — Lumera" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Project not found — Verto3D" }, { name: "robots", content: "noindex" }],
       };
     }
     const { project } = loaderData;
     return {
       meta: [
-        { title: `${project.title} — Lumera Projects` },
+        { title: `${project.title} — Verto3D Portfolio` },
         { name: "description", content: project.blurb },
-        { property: "og:title", content: `${project.title} — Lumera Projects` },
+        { property: "og:title", content: `${project.title} — Verto3D Portfolio` },
         { property: "og:description", content: project.blurb },
       ],
     };
@@ -92,7 +92,7 @@ function ProjectDetailPage() {
         <div className="overflow-hidden rounded-[2rem]">
           <img
             src={project.image}
-            alt={`${project.title} — hero visual`}
+            alt={`${project.title} — 3D model render, ${project.category} project for ${project.client}`}
             className="w-full object-cover"
           />
         </div>
@@ -131,7 +131,7 @@ function ProjectDetailPage() {
               <div className="size-32 overflow-hidden rounded-3xl md:size-44">
                 <img
                   src={next.image}
-                  alt={next.title}
+                  alt={`Next project: ${next.title}`}
                   loading="lazy"
                   className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />

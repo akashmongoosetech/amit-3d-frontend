@@ -10,16 +10,16 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
-      { title: "Projects — Lumera Creative Studio" },
+      { title: "Portfolio — Verto3D 3D Modeling & Visualization" },
       {
         name: "description",
         content:
-          "Selected brand identity, campaign, packaging and product design work from Lumera Studio.",
+          "Explore our portfolio of 3D modeling, product visualization, architectural rendering and industrial design projects across manufacturing, architecture and product design.",
       },
-      { property: "og:title", content: "Projects — Lumera Creative Studio" },
+      { property: "og:title", content: "Portfolio — Verto3D 3D Modeling & Visualization" },
       {
         property: "og:description",
-        content: "Selected work across brand identity, campaigns, packaging and product design.",
+        content: "3D modeling, product visualization and architectural rendering portfolio from Verto3D.",
       },
     ],
   }),
@@ -36,18 +36,18 @@ function ProjectsPage() {
       <section className="container-site pt-40 md:pt-48">
         <Reveal>
           <p className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            <span className="text-accent">⊹</span> Selected work
+            <span className="text-accent">⊹</span> Our portfolio
           </p>
         </Reveal>
-        <h1 className="heading-display mt-6 max-w-3xl text-5xl md:text-7xl">
-          <StaggerText text="Work that earns" />{" "}
-          <span className="serif-accent text-accent">attention</span>
-        </h1>
-        <Reveal delay={0.2}>
-          <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
-            The story behind the story — told in images that capture how it all came together.
-          </p>
-        </Reveal>
+          <h1 className="heading-display mt-6 max-w-3xl text-5xl md:text-7xl">
+            <StaggerText text="3D models that" />{" "}
+            <span className="serif-accent text-accent">speak for themselves</span>
+          </h1>
+          <Reveal delay={0.2}>
+            <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
+              A showcase of our 3D modeling, visualization and rendering work across industries — from precision industrial components to photorealistic architectural interiors.
+            </p>
+          </Reveal>
 
         <Reveal delay={0.3}>
           <div className="mt-10 flex flex-wrap gap-2">

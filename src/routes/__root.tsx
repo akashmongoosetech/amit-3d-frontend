@@ -5,10 +5,8 @@ import {
   createRootRouteWithContext,
   useRouter,
   useRouterState,
-  HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect } from "react";
 import Lenis from "lenis";
 import { Toaster } from "sonner";
 
@@ -73,21 +71,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lumera — Creative Studio for Founders" },
+      { title: "Verto3D — Professional 3D Modeling & Visualization Studio" },
       {
         name: "description",
         content:
-          "Lumera is a creative studio partnering with founders to craft brand identity, product design and digital experiences that command attention.",
+          "Industry-grade 3D modeling, product visualization, architectural rendering and industrial design services for manufacturing, architecture and e-commerce.",
       },
-      { name: "author", content: "Lumera Studio" },
-      { property: "og:title", content: "Lumera — Creative Studio for Founders" },
+      { name: "author", content: "Verto3D Studio" },
+      { property: "og:title", content: "Verto3D — Professional 3D Modeling & Visualization Studio" },
       {
         property: "og:description",
         content:
-          "Brand identity, product design and digital experiences that drive conversion and command attention.",
+          "High-quality 3D assets for manufacturing, architecture, product design and engineering. Photorealistic rendering, CAD modeling and digital twin solutions.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Lumera" },
+      { property: "og:site_name", content: "Verto3D" },
       { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -107,12 +105,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "Lumera",
-          alternateName: "Lumera Studio",
+          name: "Verto3D",
+          alternateName: "Verto3D Studio",
           url: "/",
           logo: "/favicon.ico",
           description:
-            "Creative studio partnering with founders on brand identity, product design and digital experiences.",
+            "Professional 3D modeling, product visualization and architectural rendering studio serving manufacturing, architecture and engineering clients.",
           sameAs: [] as string[],
         }),
       },
@@ -121,7 +119,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
-          name: "Lumera",
+          name: "Verto3D",
           url: "/",
           potentialAction: {
             "@type": "SearchAction",
@@ -132,25 +130,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-function RootShell({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();

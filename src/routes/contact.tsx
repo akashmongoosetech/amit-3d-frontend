@@ -8,15 +8,15 @@ import { Reveal, StaggerText } from "@/components/site/Reveal";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Lumera Creative Studio" },
+      { title: "Contact — Verto3D 3D Modeling & Visualization" },
       {
         name: "description",
-        content: "Start a project with Lumera. Tell us where your brand is going.",
+        content: "Start your 3D modeling project with Verto3D. Tell us what you need visualized.",
       },
-      { property: "og:title", content: "Contact — Lumera Creative Studio" },
+      { property: "og:title", content: "Contact — Verto3D 3D Modeling & Visualization" },
       {
         property: "og:description",
-        content: "Start a project with Lumera. Tell us where your brand is going.",
+        content: "Start your 3D project with Verto3D. Get a quote within one business day.",
       },
     ],
   }),
@@ -39,24 +39,24 @@ function ContactPage() {
         <div className="container-site pb-16 md:pb-24">
           <Reveal>
             <p className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              <span className="text-accent">⊹</span> Contact
+              <span className="text-accent">⊹</span> Get in touch
             </p>
           </Reveal>
           <h1 className="heading-display mt-6 max-w-3xl text-5xl md:text-7xl">
-            <StaggerText text="Let's talk" /> <span className="serif-accent text-accent">shop</span>
+            <StaggerText text="Let's build" /> <span className="serif-accent text-accent">something</span>
           </h1>
 
           <div className="mt-16 grid gap-12 md:grid-cols-12">
             <Reveal className="md:col-span-4">
               <div className="space-y-6">
                 <a
-                  href="mailto:hello@lumera.studio"
+                  href="mailto:hello@verto3d.com"
                   className="group flex items-center gap-4 text-foreground/85 transition-colors hover:text-foreground"
                 >
                   <span className="rounded-full border border-border p-3 transition-colors group-hover:border-foreground">
                     <Mail className="size-4" />
                   </span>
-                  hello@lumera.studio
+                  hello@verto3d.com
                 </a>
                 <a
                   href="tel:+15236363362"
@@ -65,19 +65,19 @@ function ContactPage() {
                   <span className="rounded-full border border-border p-3 transition-colors group-hover:border-foreground">
                     <Phone className="size-4" />
                   </span>
-                  (523) 636-3362
+                  (424) 123-4567
                 </a>
                 <p className="flex items-center gap-4 text-foreground/85">
                   <span className="rounded-full border border-border p-3">
                     <MapPin className="size-4" />
                   </span>
-                  Los Angeles — Worldwide
+                  Remote — Worldwide
                 </p>
               </div>
               <div className="mt-10 rounded-3xl border border-border bg-card/50 p-7">
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  We reply within one business day. Prefer a call? Book a slot and we'll walk
-                  through your project together.
+                  We reply within one business day. Tell us about your project and we'll provide a
+                  quote, timeline and portfolio of relevant work.
                 </p>
               </div>
             </Reveal>
@@ -91,7 +91,7 @@ function ContactPage() {
                   setTimeout(() => {
                     setSubmitting(false);
                     (e.target as HTMLFormElement).reset();
-                    toast.success("Message sent. We'll be in touch within one business day.");
+                    toast.success("Thanks for reaching out. We'll review your project and be in touch within one business day.");
                   }, 700);
                 }}
               >
@@ -156,7 +156,7 @@ function ContactPage() {
                     name="message"
                     required
                     rows={5}
-                    placeholder="Tell us about your project…"
+                    placeholder="Tell us about your 3D project — what industry, what type of model, and what you need delivered…"
                     className={inputClass}
                   />
                 </div>
@@ -165,7 +165,7 @@ function ContactPage() {
                   disabled={submitting}
                   className="btn-pill w-full justify-center bg-primary px-7 py-4 text-sm text-primary-foreground hover:bg-accent hover:text-accent-foreground disabled:opacity-60 sm:w-auto"
                 >
-                  {submitting ? "Sending…" : "Make it happen"}
+                  {submitting ? "Sending…" : "Send brief"}
                   <ArrowUpRight className="size-4" />
                 </button>
               </form>
