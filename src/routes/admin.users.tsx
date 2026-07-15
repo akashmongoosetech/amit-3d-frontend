@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Search, Plus, Users, ArrowUpRight } from "lucide-react";
+import { Search, Plus, Users as UsersIcon } from "lucide-react";
+import { useState } from "react";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { EmptyState } from "@/components/admin/EmptyState";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
+import { useUsers } from "@/hooks/useAdminData";
+import type { User } from "@/hooks/useAdminData";
 
 export const Route = createFileRoute("/admin/users")({
   head: () => ({
@@ -14,25 +16,12 @@ export const Route = createFileRoute("/admin/users")({
   component: UsersPage,
 });
 
-const sampleUsers = [
-  { name: "Rahul Sharma", email: "rahul@example.com", role: "Admin", status: "Active", joined: "Jan 2026" },
-  { name: "Priya Patel", email: "priya@example.com", role: "Editor", status: "Active", joined: "Mar 2026" },
-  { name: "Amit Singh", email: "amit@example.com", role: "Viewer", status: "Inactive", joined: "Apr 2026" },
-  { name: "Sneha Gupta", email: "sneha@example.com", role: "Editor", status: "Active", joined: "May 2026" },
-  { name: "Vikram Joshi", email: "vikram@example.com", role: "Viewer", status: "Active", joined: "Jun 2026" },
-];
-
 const inputClass =
   "w-full rounded-xl border border-input bg-black/40 px-4 py-2.5 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-ring";
 
 function UsersPage() {
   const [search, setSearch] = useState("");
-
-  const filtered = sampleUsers.filter(
-    (u) =>
-      u.name.toLowerCase().includes(search.toLowerCase()) ||
-      u.email.toLowerCase().includes(search.toLowerCase()),
-  );
+  const { data: users, loading } = useUsers(search);
 
   return (
     <div>
@@ -60,7 +49,9 @@ function UsersPage() {
         </div>
       </div>
 
-      {filtered.length > 0 ? (
+      {loading ? (
+        <div className="flex items-center justify-center py-16 text-sm text-muted-foreground">Loading users...</div>
+      ) : users.length > 0 ? (
         <div className="overflow-hidden rounded-xl border border-border">
           <table className="w-full text-sm">
             <thead>
@@ -73,20 +64,24 @@ function UsersPage() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((u) => (
-                <tr key={u.email} className="border-b border-border last:border-0 hover:bg-card/20">
-                  <td className="px-5 py-3.5 font-medium text-foreground">{u.name}</td>
+              {users.map((u: User) => (
+                <tr key={u._id || u.email} className="border-b border-border last:border-0 hover:bg-card/20">
+                  <td className="px-5 py-3.5 font-medium text-foreground">
+                    {u.firstName} {u.lastName}
+                  </td>
                   <td className="px-5 py-3.5 text-muted-foreground">{u.email}</td>
                   <td className="hidden px-5 py-3.5 text-muted-foreground sm:table-cell">{u.role}</td>
                   <td className="px-5 py-3.5">
                     <Badge
-                      variant={u.status === "Active" ? "default" : "secondary"}
+                      variant={u.isActive ? "default" : "secondary"}
                       className="text-[10px]"
                     >
-                      {u.status}
+                      {u.isActive ? "Active" : "Inactive"}
                     </Badge>
                   </td>
-                  <td className="hidden px-5 py-3.5 text-muted-foreground md:table-cell">{u.joined}</td>
+                  <td className="hidden px-5 py-3.5 text-muted-foreground md:table-cell">
+                    {u.createdAt ? new Date(u.createdAt).toLocaleDateString("en-IN", { month: "short", year: "numeric" }) : "-"}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -94,7 +89,7 @@ function UsersPage() {
         </div>
       ) : (
         <EmptyState
-          icon={Users}
+          icon={UsersIcon}
           title="No users found"
           description={search ? "Try a different search term." : "No users have been created yet."}
         />

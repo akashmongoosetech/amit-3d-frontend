@@ -1,28 +1,10 @@
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { ArrowUpRight, Eye, EyeOff } from "lucide-react";
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { useState, useEffect, type FormEvent } from "react";
 import { toast } from "sonner";
 
 import { Reveal } from "@/components/site/Reveal";
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormMessage,
-} from "@/components/ui/form";
 import { useAdminAuth } from "@/context/AdminAuthContext";
-
-const loginSchema = z.object({
-  identifier: z.string().min(1, "Email, mobile or username is required").trim(),
-  password: z.string().min(1, "Password is required"),
-});
-
-type LoginFormValues = z.infer<typeof loginSchema>;
 
 export const Route = createFileRoute("/admin-login")({
   head: () => ({
@@ -45,6 +27,8 @@ function AdminLoginPage() {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -52,19 +36,15 @@ function AdminLoginPage() {
     }
   }, [isAuthenticated, router]);
 
-  const form = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: { identifier: "", password: "" },
-  });
-
-  const onSubmit = async (data: LoginFormValues) => {
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
     setSubmitting(true);
     try {
-      await login(data.identifier, data.password);
+      await login(identifier, password);
       toast.success("Welcome back, admin.");
       router.navigate({ to: "/admin/dashboard" });
-    } catch {
-      toast.error("Invalid credentials. Try admin@verto3d.com / Admin@123");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Invalid credentials");
     } finally {
       setSubmitting(false);
     }
@@ -94,76 +74,54 @@ function AdminLoginPage() {
             </p>
           </div>
 
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5">
-              <FormField
-                control={form.control}
-                name="identifier"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sm text-muted-foreground">
-                      Email / Mobile / Username <span className="text-accent">*</span>
-                    </FormLabel>
-                    <FormControl>
-                      <input
-                        {...field}
-                        placeholder="Email, mobile number or username"
-                        className={inputClass}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+          <form onSubmit={onSubmit} className="space-y-4 sm:space-y-5">
+            <div>
+              <label className="mb-1.5 block text-sm text-muted-foreground">
+                Email / Mobile / Username <span className="text-accent">*</span>
+              </label>
+              <input
+                value={identifier}
+                onChange={(e) => setIdentifier(e.target.value)}
+                placeholder="Email, mobile number or username"
+                className={inputClass}
               />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sm text-muted-foreground">
-                      Password <span className="text-accent">*</span>
-                    </FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <input
-                          {...field}
-                          type={showPassword ? "text" : "password"}
-                          placeholder="Enter your password"
-                          className={inputClass}
-                        />
-                        <button
-                          type="button"
-                          onClick={() => setShowPassword((v) => !v)}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
-                          aria-label={showPassword ? "Hide password" : "Show password"}
-                          tabIndex={-1}
-                        >
-                          {showPassword ? (
-                            <EyeOff className="size-4" />
-                          ) : (
-                            <Eye className="size-4" />
-                          )}
-                        </button>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="rounded-xl border border-border bg-black/20 p-3 text-center text-xs text-muted-foreground">
-                Dummy credentials: <span className="font-medium text-foreground">admin@verto3d.com</span> /{" "}
-                <span className="font-medium text-foreground">Admin@123</span>
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm text-muted-foreground">
+                Password <span className="text-accent">*</span>
+              </label>
+              <div className="relative">
+                <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  className={inputClass}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  tabIndex={-1}
+                >
+                  {showPassword ? (
+                    <EyeOff className="size-4" />
+                  ) : (
+                    <Eye className="size-4" />
+                  )}
+                </button>
               </div>
-              <button
-                type="submit"
-                disabled={submitting}
-                className="btn-pill w-full justify-center bg-primary px-7 py-3.5 text-sm text-primary-foreground hover:bg-accent hover:text-accent-foreground disabled:opacity-60"
-              >
-                {submitting ? "Signing in…" : "Sign In"}
-                <ArrowUpRight className="size-4" />
-              </button>
-            </form>
-          </Form>
+            </div>
+            <button
+              type="submit"
+              disabled={submitting}
+              className="btn-pill w-full justify-center bg-primary px-7 py-3.5 text-sm text-primary-foreground hover:bg-accent hover:text-accent-foreground disabled:opacity-60"
+            >
+              {submitting ? "Signing in…" : "Sign In"}
+              <ArrowUpRight className="size-4" />
+            </button>
+          </form>
         </div>
       </Reveal>
     </div>

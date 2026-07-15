@@ -3,6 +3,8 @@ import { Search, Mail } from "lucide-react";
 import { useState } from "react";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { EmptyState } from "@/components/admin/EmptyState";
+import { useContacts } from "@/hooks/useAdminData";
+import type { Contact } from "@/hooks/useAdminData";
 
 export const Route = createFileRoute("/admin/contacts")({
   head: () => ({
@@ -13,26 +15,12 @@ export const Route = createFileRoute("/admin/contacts")({
   component: ContactsPage,
 });
 
-const sampleContacts = [
-  { name: "Arun Mehta", email: "arun@buildcorp.com", company: "BuildCorp India", subject: "Archviz Quote", date: "14 Jul 2026" },
-  { name: "Neha Kapoor", email: "neha@designlab.in", company: "DesignLab", subject: "Product Modeling", date: "13 Jul 2026" },
-  { name: "Rajesh Kumar", email: "rajesh@techworks.com", company: "TechWorks Ltd", subject: "CAD Conversion", date: "11 Jul 2026" },
-  { name: "Ananya Reddy", email: "ananya@studiored.in", company: "Studio Red", subject: "Interior Rendering", date: "09 Jul 2026" },
-  { name: "Vivek Desai", email: "vivek@crescendo.com", company: "Crescendo Engineering", subject: "Industrial Model", date: "07 Jul 2026" },
-];
-
 const inputClass =
   "w-full rounded-xl border border-input bg-black/40 px-4 py-2.5 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-ring";
 
 function ContactsPage() {
   const [search, setSearch] = useState("");
-
-  const filtered = sampleContacts.filter(
-    (c) =>
-      c.name.toLowerCase().includes(search.toLowerCase()) ||
-      c.email.toLowerCase().includes(search.toLowerCase()) ||
-      c.company.toLowerCase().includes(search.toLowerCase()),
-  );
+  const { data: contacts, loading } = useContacts(search);
 
   return (
     <div>
@@ -54,7 +42,9 @@ function ContactsPage() {
         </div>
       </div>
 
-      {filtered.length > 0 ? (
+      {loading ? (
+        <div className="flex items-center justify-center py-16 text-sm text-muted-foreground">Loading contacts...</div>
+      ) : contacts.length > 0 ? (
         <div className="overflow-hidden rounded-xl border border-border">
           <table className="w-full text-sm">
             <thead>
@@ -67,13 +57,15 @@ function ContactsPage() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((c) => (
-                <tr key={c.email} className="border-b border-border last:border-0 hover:bg-card/20">
+              {contacts.map((c: Contact) => (
+                <tr key={c._id || c.email} className="border-b border-border last:border-0 hover:bg-card/20">
                   <td className="px-5 py-3.5 font-medium text-foreground">{c.name}</td>
                   <td className="px-5 py-3.5 text-muted-foreground">{c.email}</td>
                   <td className="hidden px-5 py-3.5 text-muted-foreground sm:table-cell">{c.company}</td>
                   <td className="hidden px-5 py-3.5 text-muted-foreground md:table-cell">{c.subject}</td>
-                  <td className="px-5 py-3.5 text-muted-foreground">{c.date}</td>
+                  <td className="px-5 py-3.5 text-muted-foreground">
+                    {c.createdAt ? new Date(c.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) : "-"}
+                  </td>
                 </tr>
               ))}
             </tbody>

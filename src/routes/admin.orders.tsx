@@ -4,6 +4,8 @@ import { useState } from "react";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { EmptyState } from "@/components/admin/EmptyState";
 import { Badge } from "@/components/ui/badge";
+import { useOrders } from "@/hooks/useAdminData";
+import type { Order } from "@/hooks/useAdminData";
 
 export const Route = createFileRoute("/admin/orders")({
   head: () => ({
@@ -13,14 +15,6 @@ export const Route = createFileRoute("/admin/orders")({
   }),
   component: OrdersPage,
 });
-
-const sampleOrders = [
-  { id: "#ORD-001", customer: "AeroForm Manufacturing", product: "CNC Enclosure Model", status: "Completed" as const, amount: "₹4.2L", date: "12 Jul 2026" },
-  { id: "#ORD-002", customer: "Sterling Development", product: "Residence Interior", status: "Processing" as const, amount: "₹6.8L", date: "10 Jul 2026" },
-  { id: "#ORD-003", customer: "DesignCraft Studio", product: "Product Catalog Set", status: "Completed" as const, amount: "₹1.5L", date: "08 Jul 2026" },
-  { id: "#ORD-004", customer: "Urban Concepts", product: "Furniture Collection", status: "Pending" as const, amount: "₹3.2L", date: "06 Jul 2026" },
-  { id: "#ORD-005", customer: "GreenBuild Engineers", product: "Structural Model", status: "Processing" as const, amount: "₹5.1L", date: "04 Jul 2026" },
-];
 
 const statusVariant: Record<string, "default" | "secondary" | "outline" | "destructive"> = {
   Completed: "default",
@@ -33,12 +27,7 @@ const inputClass =
 
 function OrdersPage() {
   const [search, setSearch] = useState("");
-
-  const filtered = sampleOrders.filter(
-    (o) =>
-      o.id.toLowerCase().includes(search.toLowerCase()) ||
-      o.customer.toLowerCase().includes(search.toLowerCase()),
-  );
+  const { data: orders, loading } = useOrders(search);
 
   return (
     <div>
@@ -64,7 +53,9 @@ function OrdersPage() {
         </button>
       </div>
 
-      {filtered.length > 0 ? (
+      {loading ? (
+        <div className="flex items-center justify-center py-16 text-sm text-muted-foreground">Loading orders...</div>
+      ) : orders.length > 0 ? (
         <div className="overflow-hidden rounded-xl border border-border">
           <table className="w-full text-sm">
             <thead>
@@ -78,8 +69,8 @@ function OrdersPage() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((o) => (
-                <tr key={o.id} className="border-b border-border last:border-0 hover:bg-card/20">
+              {orders.map((o: Order) => (
+                <tr key={o._id || o.id} className="border-b border-border last:border-0 hover:bg-card/20">
                   <td className="px-5 py-3.5 text-xs font-medium text-muted-foreground">{o.id}</td>
                   <td className="px-5 py-3.5 font-medium text-foreground">{o.customer}</td>
                   <td className="hidden px-5 py-3.5 text-muted-foreground sm:table-cell">{o.product}</td>

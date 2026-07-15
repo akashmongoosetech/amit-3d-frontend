@@ -1,67 +1,185 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from "react";
+import { api } from "@/lib/api";
 
 export interface AdminUser {
+  _id: string;
   firstName: string;
   lastName: string;
   email: string;
+  mobile: string;
+  username: string;
+  profileImage: string;
+  role: "admin" | "superadmin";
+  isActive: boolean;
 }
 
 interface AdminAuthContextValue {
   isAuthenticated: boolean;
   user: AdminUser | null;
-  login: (email: string, password: string) => Promise<void>;
+  token: string | null;
+  profileImage: string | null;
+  updateProfileImage: (dataUrl: string | null) => void;
+  login: (identifier: string, password: string) => Promise<void>;
+  signup: (data: SignupPayload) => Promise<void>;
   logout: () => void;
+}
+
+export interface SignupPayload {
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobile: string;
+  username: string;
+  password: string;
+  confirmPassword: string;
+  profileImage?: string;
 }
 
 const AdminAuthContext = createContext<AdminAuthContextValue | null>(null);
 
 const STORAGE_KEY = "verto3d_admin_session";
+const PROFILE_KEY = "verto3d_admin_profile_image";
 
-export function AdminAuthProvider({ children }: { children: ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    try {
-      return !!localStorage.getItem(STORAGE_KEY);
-    } catch {
-      return false;
-    }
-  });
+interface StoredSession {
+  token: string;
+  admin: AdminUser;
+}
 
-  const [user, setUser] = useState<AdminUser | null>(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? (JSON.parse(raw) as AdminUser) : null;
-    } catch {
+function loadSession(): StoredSession | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? (JSON.parse(raw) as StoredSession) : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveSession(session: StoredSession) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+  } catch {}
+}
+
+function clearSession() {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(PROFILE_KEY);
+  } catch {}
+}
+
+function loadProfileImage(): string | null {
+  try {
+    const val = localStorage.getItem(PROFILE_KEY);
+    if (!val || val.startsWith("blob:") || val === "null" || val === "undefined") {
+      if (val) localStorage.removeItem(PROFILE_KEY);
       return null;
     }
-  });
+    return val;
+  } catch {
+    return null;
+  }
+}
 
-  const login = useCallback(
-    async (email: string, _password: string) => {
-      await new Promise((r) => setTimeout(r, 500));
-      const mockUser: AdminUser = {
-        firstName: "Admin",
-        lastName: "User",
-        email,
-      };
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(mockUser));
-      } catch {}
-      setUser(mockUser);
-      setIsAuthenticated(true);
-    },
-    [],
-  );
+function isValidImage(val: string): boolean {
+  return val.startsWith("data:image/") && val.includes("base64,");
+}
 
-  const logout = useCallback(() => {
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-    } catch {}
-    setUser(null);
-    setIsAuthenticated(false);
+function saveProfileImage(dataUrl: string | null) {
+  try {
+    if (dataUrl) {
+      localStorage.setItem(PROFILE_KEY, dataUrl);
+    } else {
+      localStorage.removeItem(PROFILE_KEY);
+    }
+  } catch {}
+}
+
+export function AdminAuthProvider({ children }: { children: ReactNode }) {
+  const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState<AdminUser | null>(null);
+  const [profileImage, setProfileImageState] = useState<string | null>(loadProfileImage);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const stored = loadSession();
+    if (!stored) {
+      setReady(true);
+      return;
+    }
+
+    api.get<AdminUser>("/auth/me")
+      .then((admin) => {
+        saveSession({ token: stored.token, admin });
+        setToken(stored.token);
+        setUser(admin);
+        if (admin.profileImage && isValidImage(admin.profileImage)) {
+          saveProfileImage(admin.profileImage);
+          setProfileImageState(admin.profileImage);
+        }
+      })
+      .catch(() => {
+        clearSession();
+        setToken(null);
+        setUser(null);
+      })
+      .finally(() => setReady(true));
   }, []);
 
+  const isAuthenticated = !!token && !!user;
+
+  const updateProfileImage = useCallback((dataUrl: string | null) => {
+    saveProfileImage(dataUrl);
+    setProfileImageState(dataUrl);
+  }, []);
+
+  const login = useCallback(async (identifier: string, password: string) => {
+    const data = await api.post<{ admin: AdminUser; token: string }>("/auth/login", {
+      identifier,
+      password,
+    });
+
+    saveSession({ token: data.token, admin: data.admin });
+    setToken(data.token);
+    setUser(data.admin);
+    if (data.admin.profileImage && isValidImage(data.admin.profileImage)) {
+      saveProfileImage(data.admin.profileImage);
+      setProfileImageState(data.admin.profileImage);
+    }
+  }, []);
+
+  const signup = useCallback(async (payload: SignupPayload) => {
+    if (payload.profileImage && isValidImage(payload.profileImage)) {
+      saveProfileImage(payload.profileImage);
+      setProfileImageState(payload.profileImage);
+    }
+
+    const data = await api.post<{ admin: AdminUser; token: string }>("/auth/signup", payload);
+
+    saveSession({ token: data.token, admin: data.admin });
+    setToken(data.token);
+    setUser(data.admin);
+  }, []);
+
+  const logout = useCallback(async () => {
+    try {
+      await api.post("/auth/logout");
+    } catch {}
+    clearSession();
+    setToken(null);
+    setUser(null);
+    setProfileImageState(null);
+  }, []);
+
+  if (!ready) {
+    return (
+      <div className="flex min-h-dvh items-center justify-center bg-background">
+        <div className="size-6 animate-spin rounded-full border-2 border-accent border-t-transparent" />
+      </div>
+    );
+  }
+
   return (
-    <AdminAuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+    <AdminAuthContext.Provider value={{ isAuthenticated, user, token, profileImage, updateProfileImage, login, signup, logout }}>
       {children}
     </AdminAuthContext.Provider>
   );

@@ -7,7 +7,6 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin/settings")({
   head: () => ({
@@ -67,22 +66,20 @@ function SettingsPage() {
       <PageHeader title="Settings" description="Manage your admin preferences" />
 
       <div className="space-y-6 max-w-2xl">
-        {/* Profile Settings */}
         <SettingCard title="Profile Settings">
           <div className="space-y-4">
             <div>
               <Label className="mb-1.5 block text-sm text-muted-foreground">Full Name</Label>
-              <input defaultValue="Admin User" className={inputClass} />
+              <input placeholder="Enter your full name" className={inputClass} />
             </div>
             <div>
               <Label className="mb-1.5 block text-sm text-muted-foreground">Email</Label>
-              <input defaultValue="admin@verto3d.com" type="email" className={inputClass} />
+              <input type="email" placeholder="Enter your email" className={inputClass} />
             </div>
           </div>
           <SaveButton onClick={handleSave} />
         </SettingCard>
 
-        {/* Security Settings */}
         <SettingCard title="Security Settings">
           <div className="space-y-4">
             <div>
@@ -103,7 +100,6 @@ function SettingsPage() {
           <SaveButton onClick={handleSave} />
         </SettingCard>
 
-        {/* Notification Settings */}
         <SettingCard title="Notification Settings">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
@@ -124,12 +120,12 @@ function SettingsPage() {
           <SaveButton onClick={handleSave} />
         </SettingCard>
 
-        {/* General Settings */}
         <SettingCard title="General Settings">
           <div className="space-y-4">
             <div>
               <Label className="mb-1.5 block text-sm text-muted-foreground">Timezone</Label>
-              <select defaultValue="Asia/Kolkata" className={selectClass}>
+              <select className={selectClass}>
+                <option value="">Select timezone</option>
                 <option value="UTC">UTC</option>
                 <option value="Asia/Kolkata">Asia/Kolkata (IST)</option>
                 <option value="America/New_York">America/New_York (EST)</option>
@@ -138,7 +134,8 @@ function SettingsPage() {
             </div>
             <div>
               <Label className="mb-1.5 block text-sm text-muted-foreground">Language</Label>
-              <select defaultValue="en" className={selectClass}>
+              <select className={selectClass}>
+                <option value="">Select language</option>
                 <option value="en">English</option>
                 <option value="hi">Hindi</option>
                 <option value="es">Spanish</option>
