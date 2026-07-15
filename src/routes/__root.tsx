@@ -157,14 +157,15 @@ function RootComponent() {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [pathname]);
 
+  const isAdmin = pathname.startsWith("/admin-") || pathname.startsWith("/admin");
+
   return (
     <QueryClientProvider client={queryClient}>
-      <Nav />
+      {!isAdmin && <Nav />}
       <main>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
       </main>
-      <Footer />
+      {!isAdmin && <Footer />}
       <Toaster theme="dark" position="bottom-right" />
     </QueryClientProvider>
   );

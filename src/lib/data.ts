@@ -60,7 +60,12 @@ export const projects: Project[] = [
     category: "Medical",
     year: "2025",
     client: "HealthVue Diagnostics",
-    services: ["Medical modeling", "Technical illustration", "Exploded views", "Regulatory renders"],
+    services: [
+      "Medical modeling",
+      "Technical illustration",
+      "Exploded views",
+      "Regulatory renders",
+    ],
     image: projectCourt,
     tall: true,
     body: [
@@ -138,12 +143,19 @@ export const articles: Article[] = [
   {
     slug: "benefits-of-professional-3d-modeling",
     title: "Why Professional 3D Modeling Is a Competitive Advantage",
-    excerpt: "How high-quality 3D assets reduce development costs, accelerate time-to-market and improve stakeholder communication.",
+    excerpt:
+      "How high-quality 3D assets reduce development costs, accelerate time-to-market and improve stakeholder communication.",
     category: "Perspective",
     date: "Jun 28, 2026",
     publishedAt: "2026-06-28",
     modifiedAt: "2026-06-28",
-    keywords: ["3D modeling", "product development", "CAD visualization", "manufacturing", "prototyping"],
+    keywords: [
+      "3D modeling",
+      "product development",
+      "CAD visualization",
+      "manufacturing",
+      "prototyping",
+    ],
     readTime: "6 min read",
     author: "Daniel Voss",
     role: "Lead 3D Engineer",
@@ -158,12 +170,19 @@ export const articles: Article[] = [
   {
     slug: "cad-vs-3d-modeling",
     title: "CAD vs 3D Modeling: What's the Difference and Which One Do You Need?",
-    excerpt: "Understanding the distinction between engineering CAD and creative 3D modeling — and when to use each.",
+    excerpt:
+      "Understanding the distinction between engineering CAD and creative 3D modeling — and when to use each.",
     category: "Case notes",
     date: "May 20, 2026",
     publishedAt: "2026-05-20",
     modifiedAt: "2026-05-20",
-    keywords: ["CAD", "3D modeling", "engineering design", "product development", "parametric modeling"],
+    keywords: [
+      "CAD",
+      "3D modeling",
+      "engineering design",
+      "product development",
+      "parametric modeling",
+    ],
     readTime: "5 min read",
     author: "Mia Calderon",
     role: "Technical Director",
@@ -178,12 +197,19 @@ export const articles: Article[] = [
   {
     slug: "architectural-visualization-trends-2026",
     title: "Architectural Visualization Trends Defining 2026",
-    excerpt: "From real-time walkthroughs to AI-assisted texturing — the technologies reshaping archviz.",
+    excerpt:
+      "From real-time walkthroughs to AI-assisted texturing — the technologies reshaping archviz.",
     category: "Perspective",
     date: "Apr 14, 2026",
     publishedAt: "2026-04-14",
     modifiedAt: "2026-04-14",
-    keywords: ["archviz", "architectural visualization", "real-time rendering", "CGI", "3D rendering trends"],
+    keywords: [
+      "archviz",
+      "architectural visualization",
+      "real-time rendering",
+      "CGI",
+      "3D rendering trends",
+    ],
     readTime: "4 min read",
     author: "Elena Marchetti",
     role: "Creative Director",
@@ -198,12 +224,19 @@ export const articles: Article[] = [
   {
     slug: "cgi-for-ecommerce",
     title: "CGI for E-commerce: Why Leading Brands Are Replacing Product Photography",
-    excerpt: "How 3D product visualization is transforming online retail with higher conversions and lower production costs.",
+    excerpt:
+      "How 3D product visualization is transforming online retail with higher conversions and lower production costs.",
     category: "Studio",
     date: "Mar 5, 2026",
     publishedAt: "2026-03-05",
     modifiedAt: "2026-03-05",
-    keywords: ["CGI", "e-commerce", "product visualization", "3D product rendering", "online retail"],
+    keywords: [
+      "CGI",
+      "e-commerce",
+      "product visualization",
+      "3D product rendering",
+      "online retail",
+    ],
     readTime: "5 min read",
     author: "Daniel Voss",
     role: "Lead 3D Engineer",
@@ -220,72 +253,134 @@ export const articles: Article[] = [
 export const services = [
   {
     title: "3D Product Modeling",
-    items: ["Product design", "Mechanical parts", "Consumer electronics", "Packaging design", "Prototyping", "Manufacturing-ready models"],
+    items: [
+      "Product design",
+      "Mechanical parts",
+      "Consumer electronics",
+      "Packaging design",
+      "Prototyping",
+      "Manufacturing-ready models",
+    ],
   },
   {
     title: "Architectural Visualization",
-    items: ["Interior rendering", "Exterior rendering", "Floor plan visualization", "Real-time walkthroughs", "Real estate marketing", "Urban planning"],
+    items: [
+      "Interior rendering",
+      "Exterior rendering",
+      "Floor plan visualization",
+      "Real-time walkthroughs",
+      "Real estate marketing",
+      "Urban planning",
+    ],
   },
   {
     title: "Industrial Design",
-    items: ["CAD modeling", "Reverse engineering", "BIM modeling", "Technical drawings", "Engineering specs", "DFM analysis"],
+    items: [
+      "CAD modeling",
+      "Reverse engineering",
+      "BIM modeling",
+      "Technical drawings",
+      "Engineering specs",
+      "DFM analysis",
+    ],
   },
   {
     title: "Animation & CGI",
-    items: ["Product animation", "Exploded views", "360-degree spins", "Marketing CGI", "Archviz walkthrough", "Motion graphics"],
+    items: [
+      "Product animation",
+      "Exploded views",
+      "360-degree spins",
+      "Marketing CGI",
+      "Archviz walkthrough",
+      "Motion graphics",
+    ],
   },
   {
     title: "Furniture & Interior",
-    items: ["Furniture modeling", "Interior staging", "Material visualization", "Custom joinery", "Lighting studies", "Space planning"],
+    items: [
+      "Furniture modeling",
+      "Interior staging",
+      "Material visualization",
+      "Custom joinery",
+      "Lighting studies",
+      "Space planning",
+    ],
   },
   {
     title: "Automotive & Transport",
-    items: ["Vehicle modeling", "Part visualization", "Showroom renders", "Configurator assets", "Concept design", "Technical illustration"],
+    items: [
+      "Vehicle modeling",
+      "Part visualization",
+      "Showroom renders",
+      "Configurator assets",
+      "Concept design",
+      "Technical illustration",
+    ],
   },
   {
     title: "Medical & Scientific",
-    items: ["Anatomical models", "Device visualization", "Surgical planning", "Lab equipment", "Pharma packaging", "Regulatory renders"],
+    items: [
+      "Anatomical models",
+      "Device visualization",
+      "Surgical planning",
+      "Lab equipment",
+      "Pharma packaging",
+      "Regulatory renders",
+    ],
   },
   {
     title: "AR/VR & Digital Twins",
-    items: ["Real-time models", "AR product preview", "VR walkthroughs", "Digital twin assets", "IoT integration", "Interactive configurators"],
+    items: [
+      "Real-time models",
+      "AR product preview",
+      "VR walkthroughs",
+      "Digital twin assets",
+      "IoT integration",
+      "Interactive configurators",
+    ],
   },
 ];
 
 export const testimonials = [
   {
     quote: "The closest thing to an in-house 3D department without actually hiring one",
-    detail: "From CAD conversion to photorealistic rendering, they integrated seamlessly into our workflow and delivered on every deadline.",
+    detail:
+      "From CAD conversion to photorealistic rendering, they integrated seamlessly into our workflow and delivered on every deadline.",
     name: "Alex Morane",
     role: "CEO, AeroForm Manufacturing",
   },
   {
     quote: "Finally, a 3D partner who understands both engineering and aesthetics",
-    detail: "They didn't just make our product look good — every polygon had a purpose, and the models were manufacturing-ready straight out of review.",
+    detail:
+      "They didn't just make our product look good — every polygon had a purpose, and the models were manufacturing-ready straight out of review.",
     name: "Taylor Reyes",
     role: "Director of Product, Contour Works",
   },
   {
     quote: "Fast turnaround without compromising on precision",
-    detail: "Every request was handled with care and technical accuracy. Never just speed — always done right, right down to the chamfers.",
+    detail:
+      "Every request was handled with care and technical accuracy. Never just speed — always done right, right down to the chamfers.",
     name: "Jordan Bleeker",
     role: "Founder, Pinnacle Wearables",
   },
   {
     quote: "A process as precise as the final renders",
-    detail: "They challenged our assumptions about what 3D could do and turned a fuzzy brief into focused, high-impact visual assets.",
+    detail:
+      "They challenged our assumptions about what 3D could do and turned a fuzzy brief into focused, high-impact visual assets.",
     name: "Casey Quan",
     role: "Head of Development, Sterling Development",
   },
   {
     quote: "Gave our product launch the polish it needed to stand out",
-    detail: "They took engineering CAD data and built a visual identity that felt premium, clear and unmistakably ours.",
+    detail:
+      "They took engineering CAD data and built a visual identity that felt premium, clear and unmistakably ours.",
     name: "Riley Jamison",
     role: "Design Director, Vertex Automotive",
   },
   {
     quote: "The kind of technical partner you want on speed dial",
-    detail: "Reliable, sharp and ego-free. We trusted them with our product models — and they delivered every single time.",
+    detail:
+      "Reliable, sharp and ego-free. We trusted them with our product models — and they delivered every single time.",
     name: "Morgan Ellis",
     role: "Principal, HealthVue Diagnostics",
   },
@@ -296,19 +391,22 @@ export const stats = [
     value: 500,
     suffix: "+",
     label: "Projects delivered",
-    detail: "From single product models to enterprise-scale digital twin implementations across 50+ industries.",
+    detail:
+      "From single product models to enterprise-scale digital twin implementations across 50+ industries.",
   },
   {
     value: 98,
     suffix: "%",
     label: "Client satisfaction",
-    detail: "Based on post-project surveys — our highest priority is delivering on time, on spec and on budget.",
+    detail:
+      "Based on post-project surveys — our highest priority is delivering on time, on spec and on budget.",
   },
   {
     value: 50,
     suffix: "+",
     label: "Industries served",
-    detail: "Manufacturing, architecture, medical, automotive, furniture, aerospace, consumer electronics and more.",
+    detail:
+      "Manufacturing, architecture, medical, automotive, furniture, aerospace, consumer electronics and more.",
   },
   {
     value: 15,
@@ -316,7 +414,8 @@ export const stats = [
     prefix: "",
     suffixWord: " years",
     label: "Combined experience",
-    detail: "Our team brings expertise from industrial design, architectural visualization and CGI production.",
+    detail:
+      "Our team brings expertise from industrial design, architectural visualization and CGI production.",
   },
 ];
 
@@ -456,6 +555,719 @@ export const faqs = [
   {
     q: "Who owns the intellectual property of the 3D models?",
     a: "You own 100% of the final deliverables. We retain no IP rights to the models, renders or any project assets. Our standard contract assigns all IP to you upon final payment. We never reuse client models or designs without explicit written permission.",
+  },
+];
+
+export interface FeaturedProduct {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  size: string;
+  material: string;
+  productionTime: string;
+  startingPrice: number;
+  rating: number;
+  image: string;
+}
+
+export const featuredProducts: FeaturedProduct[] = [
+  {
+    id: "ergonomic-chair-pro",
+    name: "Ergonomic Chair Pro",
+    category: "Furniture",
+    description:
+      "Fully parametric office chair model with adjustable lumbar support, breathable mesh back and polished aluminum frame. Production-ready for manufacturing.",
+    size: "68 × 62 × 112 cm",
+    material: "Mesh, Aluminum, PU Foam",
+    productionTime: "5–8 days",
+    startingPrice: 2400,
+    rating: 4.8,
+    image: "https://picsum.photos/seed/chair-pro/800/900",
+  },
+  {
+    id: "smartwatch-sport",
+    name: "Smartwatch Sport X2",
+    category: "Electronics",
+    description:
+      "High-detail smartwatch model with ceramic case, AMOLED display, interchangeable bands and optical sensor array. E-commerce ready.",
+    size: "44 × 38 × 11 mm",
+    material: "Ceramic, Titanium, Silicone",
+    productionTime: "4–6 days",
+    startingPrice: 1800,
+    rating: 4.9,
+    image: "https://picsum.photos/seed/watch-sport/800/900",
+  },
+  {
+    id: "cnc-motor-mount",
+    name: "Precision CNC Motor Mount",
+    category: "Industrial",
+    description:
+      "Manufacturing-grade motor mount with CNC-machined tolerances, threaded inserts and vibration-dampening geometry. STEP and IGES included.",
+    size: "25 × 18 × 14 cm",
+    material: "7075 Aluminum",
+    productionTime: "3–5 days",
+    startingPrice: 950,
+    rating: 4.7,
+    image: "https://picsum.photos/seed/cnc-mount/800/900",
+  },
+  {
+    id: "luxury-villa-exterior",
+    name: "Luxury Villa Exterior",
+    category: "Architecture",
+    description:
+      "Photorealistic architectural model with landscaped surroundings, pool, terrace and interior cutaway views. Real-time walkthrough capable.",
+    size: "30 × 25 × 12 m (site)",
+    material: "Concrete, Glass, Stone, Timber",
+    productionTime: "12–18 days",
+    startingPrice: 5500,
+    rating: 4.9,
+    image: "https://picsum.photos/seed/luxury-villa/800/900",
+  },
+  {
+    id: "medical-scanner-housing",
+    name: "CT Scanner Housing",
+    category: "Medical",
+    description:
+      "FDA submission-ready medical device housing with ergonomic patient interface, cable management and service access panels.",
+    size: "180 × 85 × 120 cm",
+    material: "ABS, Polycarbonate, Stainless Steel",
+    productionTime: "8–12 days",
+    startingPrice: 4200,
+    rating: 4.6,
+    image: "https://picsum.photos/seed/ct-scanner/800/900",
+  },
+  {
+    id: "sports-car-concept",
+    name: "Sports Car Concept Aero",
+    category: "Automotive",
+    description:
+      "Full exterior and interior concept car model with active aerodynamics, battery pack layout and configurable paint finishes.",
+    size: "4.7 × 2.0 × 1.2 m",
+    material: "Carbon Fiber, Aluminum, Leather",
+    productionTime: "15–20 days",
+    startingPrice: 8500,
+    rating: 5.0,
+    image: "https://picsum.photos/seed/sportscar/800/900",
+  },
+];
+
+export interface ProductCategory {
+  id: string;
+  title: string;
+  description: string;
+  count: number;
+  icon: string;
+  image: string;
+}
+
+export const productCategories: ProductCategory[] = [
+  {
+    id: "architectural",
+    title: "Architectural Models",
+    description: "Building exteriors, interiors, landscapes and urban planning visualizations.",
+    count: 48,
+    icon: "Building2",
+    image: "https://picsum.photos/seed/arch-cat/600/400",
+  },
+  {
+    id: "product-prototypes",
+    title: "Product Prototypes",
+    description: "Consumer goods, electronics, packaging and concept validation models.",
+    count: 72,
+    icon: "Lightbulb",
+    image: "https://picsum.photos/seed/proto-cat/600/400",
+  },
+  {
+    id: "industrial",
+    title: "Industrial Components",
+    description: "Machine parts, enclosures, tooling and manufacturing equipment.",
+    count: 64,
+    icon: "Settings",
+    image: "https://picsum.photos/seed/indus-cat/600/400",
+  },
+  {
+    id: "engineering",
+    title: "Engineering Parts",
+    description: "Precision CAD models with full tolerance annotations and assembly drawings.",
+    count: 56,
+    icon: "Telescope",
+    image: "https://picsum.photos/seed/eng-cat/600/400",
+  },
+  {
+    id: "miniature",
+    title: "Miniature Models",
+    description: "Scale replicas, dioramas, terrain and collectible miniatures.",
+    count: 35,
+    icon: "Search",
+    image: "https://picsum.photos/seed/mini-cat/600/400",
+  },
+  {
+    id: "characters",
+    title: "Character Figures",
+    description: "3D sculpted characters for games, animation and collectible figures.",
+    count: 29,
+    icon: "Users",
+    image: "https://picsum.photos/seed/char-cat/600/400",
+  },
+  {
+    id: "toys",
+    title: "Toys & Collectibles",
+    description: "Action figures, model kits, board game pieces and display statues.",
+    count: 41,
+    icon: "Smile",
+    image: "https://picsum.photos/seed/toy-cat/600/400",
+  },
+  {
+    id: "educational",
+    title: "Educational Models",
+    description: "Anatomy, chemical structures, physics demonstrators and teaching aids.",
+    count: 23,
+    icon: "BookOpen",
+    image: "https://picsum.photos/seed/edu-cat/600/400",
+  },
+  {
+    id: "medical",
+    title: "Medical Models",
+    description:
+      "Anatomical replicas, surgical guides, implant prototypes and visualization models.",
+    count: 31,
+    icon: "Heart",
+    image: "https://picsum.photos/seed/med-cat/600/400",
+  },
+  {
+    id: "automotive",
+    title: "Automotive Parts",
+    description: "Engine components, body panels, interior trim and custom fabrication parts.",
+    count: 45,
+    icon: "Truck",
+    image: "https://picsum.photos/seed/auto-cat/600/400",
+  },
+  {
+    id: "mechanical",
+    title: "Mechanical Components",
+    description: "Gears, bearings, linkages, housings and full assembly models.",
+    count: 53,
+    icon: "Cog",
+    image: "https://picsum.photos/seed/mech-cat/600/400",
+  },
+  {
+    id: "home-decor",
+    title: "Home Decor",
+    description: "Furniture, lighting, decorative objects and interior accessories.",
+    count: 38,
+    icon: "Sofa",
+    image: "https://picsum.photos/seed/decor-cat/600/400",
+  },
+  {
+    id: "personalized",
+    title: "Personalized Gifts",
+    description: "Custom engraved items, nameplates, awards and commemorative pieces.",
+    count: 27,
+    icon: "Gift",
+    image: "https://picsum.photos/seed/gift-cat/600/400",
+  },
+  {
+    id: "corporate",
+    title: "Corporate Gifts",
+    description: "Branded promotional models, trophy designs and executive desk accessories.",
+    count: 19,
+    icon: "Briefcase",
+    image: "https://picsum.photos/seed/corp-cat/600/400",
+  },
+  {
+    id: "jewelry",
+    title: "Jewelry Prototypes",
+    description: "Ring, necklace, bracelet and accessory models for casting and presentation.",
+    count: 22,
+    icon: "Gem",
+    image: "https://picsum.photos/seed/jewel-cat/600/400",
+  },
+  {
+    id: "furniture",
+    title: "Furniture Models",
+    description: "Chairs, tables, shelving, sofas and custom joinery for pre-visualization.",
+    count: 36,
+    icon: "Armchair",
+    image: "https://picsum.photos/seed/furn-cat/600/400",
+  },
+  {
+    id: "scale-models",
+    title: "Scale Models",
+    description: "Architectural scale models, master planning and exhibition dioramas.",
+    count: 17,
+    icon: "Ruler",
+    image: "https://picsum.photos/seed/scale-cat/600/400",
+  },
+  {
+    id: "machine-parts",
+    title: "Machine Parts",
+    description:
+      "Custom machining models with full GD&T, thread specs and surface finish callouts.",
+    count: 44,
+    icon: "Wrench",
+    image: "https://picsum.photos/seed/machine-cat/600/400",
+  },
+  {
+    id: "custom-orders",
+    title: "Custom Orders",
+    description: "One-off bespoke models designed and built to your exact specifications.",
+    count: 99,
+    icon: "Star",
+    image: "https://picsum.photos/seed/custom-cat/600/400",
+  },
+];
+
+export interface TrendingProduct {
+  id: string;
+  name: string;
+  category: string;
+  material: string;
+  size: string;
+  image: string;
+  badge?: "popular" | "featured" | "best-seller";
+}
+
+export const trendingProducts: TrendingProduct[] = [
+  {
+    id: "tp-1",
+    name: "Mechanical Keyboard Case",
+    category: "Product Prototypes",
+    material: "CNC Aluminum",
+    size: "36 × 14 × 3 cm",
+    image: "https://picsum.photos/seed/keyboard/600/700",
+    badge: "best-seller",
+  },
+  {
+    id: "tp-2",
+    name: "Drone Frame V2",
+    category: "Industrial",
+    material: "Carbon Fiber",
+    size: "45 × 45 × 8 cm",
+    image: "https://picsum.photos/seed/drone/600/700",
+    badge: "popular",
+  },
+  {
+    id: "tp-3",
+    name: "Modular Bookshelf",
+    category: "Furniture",
+    material: "Birch Plywood",
+    size: "120 × 30 × 180 cm",
+    image: "https://picsum.photos/seed/bookshelf/600/700",
+    badge: "featured",
+  },
+  {
+    id: "tp-4",
+    name: "Robot Arm Joint",
+    category: "Mechanical",
+    material: "Steel & Aluminum",
+    size: "22 × 15 × 12 cm",
+    image: "https://picsum.photos/seed/robot-joint/600/700",
+    badge: "popular",
+  },
+  {
+    id: "tp-5",
+    name: "Desk Lamp Minimal",
+    category: "Home Decor",
+    material: "Brass & Opal Glass",
+    size: "40 × 20 × 20 cm",
+    image: "https://picsum.photos/seed/desklamp/600/700",
+  },
+  {
+    id: "tp-6",
+    name: "Sneaker Sole Mold",
+    category: "Engineering",
+    material: "Tool Steel",
+    size: "30 × 18 × 12 cm",
+    image: "https://picsum.photos/seed/sneaker-mold/600/700",
+    badge: "best-seller",
+  },
+];
+
+export interface LatestProduct {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  launchDate: string;
+}
+
+export const latestProducts: LatestProduct[] = [
+  {
+    id: "lp-1",
+    name: "Smart Home Hub",
+    description:
+      "Compact smart home controller with touch display, thermal management and wall-mount bracket.",
+    image: "https://picsum.photos/seed/smarthub/600/500",
+    launchDate: "Jul 2026",
+  },
+  {
+    id: "lp-2",
+    name: "Ergonomic Footrest",
+    description: "Adjustable footrest with memory foam cushion, steel base and anti-slip grip.",
+    image: "https://picsum.photos/seed/footrest/600/500",
+    launchDate: "Jun 2026",
+  },
+  {
+    id: "lp-3",
+    name: "Industrial Sensor Enclosure",
+    description:
+      "Weatherproof IP67 sensor housing with cable glands, wall mount and vented design.",
+    image: "https://picsum.photos/seed/sensor/600/500",
+    launchDate: "Jun 2026",
+  },
+  {
+    id: "lp-4",
+    name: "Minimalist Desk Organizer",
+    description:
+      "Modular desk organizer with pen holder, phone stand and cable management channel.",
+    image: "https://picsum.photos/seed/organizer/600/500",
+    launchDate: "May 2026",
+  },
+];
+
+export interface WhyChooseItem {
+  title: string;
+  text: string;
+}
+
+export const whyChooseUs: WhyChooseItem[] = [
+  {
+    title: "High Precision",
+    text: "All models built to exact specifications with tolerances down to 0.01mm for engineering-grade accuracy.",
+  },
+  {
+    title: "Professional Finishing",
+    text: "Smooth surfaces, clean edges and production-ready textures — no cleanup required.",
+  },
+  {
+    title: "Custom Design",
+    text: "Every model is built from scratch or adapted to your unique requirements and brand standards.",
+  },
+  {
+    title: "Fast Delivery",
+    text: "Structured pipeline with clear milestones ensures on-time delivery every time.",
+  },
+  {
+    title: "Affordable Pricing",
+    text: "Fixed-price quotes with transparent billing — no surprise costs or hidden fees.",
+  },
+  {
+    title: "High Quality Materials",
+    text: "PBR materials, accurate physical properties and manufacturing-grade surface finishes.",
+  },
+  {
+    title: "Prototype Support",
+    text: "Models optimized for 3D printing, CNC machining, injection molding and casting processes.",
+  },
+  {
+    title: "Multiple Sizes",
+    text: "From micro-scale components to full architectural models — any size, any resolution.",
+  },
+  {
+    title: "Color Options",
+    text: "Full Pantone and RAL matching for brand-accurate color representation across materials.",
+  },
+  {
+    title: "Expert Designers",
+    text: "Senior 3D artists and CAD engineers with 15+ years combined industry experience.",
+  },
+];
+
+export interface Material {
+  id: string;
+  name: string;
+  description: string;
+  bestFor: string;
+  image: string;
+}
+
+export const materials: Material[] = [
+  {
+    id: "pla",
+    name: "PLA",
+    description:
+      "Biodegradable thermoplastic ideal for prototypes, concept models and low-stress parts. Easy to print with excellent surface finish.",
+    bestFor: "Prototypes, Concept Models, Home Decor",
+    image: "https://picsum.photos/seed/pla/600/400",
+  },
+  {
+    id: "abs",
+    name: "ABS",
+    description:
+      "Strong, durable thermoplastic with good impact resistance. Suitable for functional parts and end-use components.",
+    bestFor: "Functional Parts, Enclosures, Automotive",
+    image: "https://picsum.photos/seed/abs/600/400",
+  },
+  {
+    id: "petg",
+    name: "PETG",
+    description:
+      "Food-safe, impact-resistant material with excellent layer adhesion and chemical resistance. Great for consumer products.",
+    bestFor: "Food Containers, Medical, Consumer Goods",
+    image: "https://picsum.photos/seed/petg/600/400",
+  },
+  {
+    id: "resin",
+    name: "Resin",
+    description:
+      "High-detail photopolymer resin for ultra-smooth surfaces, miniature figures, jewelry patterns and investment casting.",
+    bestFor: "Miniatures, Jewelry, Dental, Figurines",
+    image: "https://picsum.photos/seed/resin/600/400",
+  },
+  {
+    id: "nylon",
+    name: "Nylon",
+    description:
+      "Strong, flexible engineering thermoplastic with excellent wear resistance and fatigue life. Ideal for moving parts.",
+    bestFor: "Gears, Hinges, Living Hinges, Bearings",
+    image: "https://picsum.photos/seed/nylon/600/400",
+  },
+  {
+    id: "tpu",
+    name: "TPU",
+    description:
+      "Flexible, rubber-like filament perfect for gaskets, seals, shoe soles and vibration-dampening components.",
+    bestFor: "Gaskets, Seals, Grips, Wearables",
+    image: "https://picsum.photos/seed/tpu/600/400",
+  },
+  {
+    id: "carbon-fiber",
+    name: "Carbon Fiber",
+    description:
+      "Ultra-stiff, lightweight composite material for aerospace, automotive and high-performance structural parts.",
+    bestFor: "Drone Frames, Brackets, Racing Parts",
+    image: "https://picsum.photos/seed/carbon/600/400",
+  },
+  {
+    id: "wood-fill",
+    name: "Wood Fill",
+    description:
+      "PLA composite with real wood fibers. Sandable, stainable and paintable for natural wood aesthetics.",
+    bestFor: "Furniture, Decor, Architectural Models",
+    image: "https://picsum.photos/seed/woodfill/600/400",
+  },
+  {
+    id: "metal-finish",
+    name: "Metal Finish",
+    description:
+      "Metal-infused filaments and finishing processes for authentic metallic appearance with real weight and feel.",
+    bestFor: "Display Models, Awards, Premium Goods",
+    image: "https://picsum.photos/seed/metal/600/400",
+  },
+];
+
+export interface CustomerProject {
+  id: string;
+  customerName: string;
+  industry: string;
+  projectType: string;
+  review: string;
+  rating: number;
+  beforeImage: string;
+  afterImage: string;
+}
+
+export const customerProjects: CustomerProject[] = [
+  {
+    id: "cp-1",
+    customerName: "AeroForm Manufacturing",
+    industry: "Industrial",
+    projectType: "CNC Enclosure Redesign",
+    review:
+      "The precision exceeded our expectations. The model was manufacturing-ready straight out of review.",
+    rating: 5,
+    beforeImage: "https://picsum.photos/seed/before-1/600/400",
+    afterImage: "https://picsum.photos/seed/after-1/600/400",
+  },
+  {
+    id: "cp-2",
+    customerName: "Sterling Development",
+    industry: "Architecture",
+    projectType: "Luxury Residence Visualization",
+    review:
+      "Sold 80% of units in 10 weeks — buyers specifically cited the visualizations as the deciding factor.",
+    rating: 5,
+    beforeImage: "https://picsum.photos/seed/before-2/600/400",
+    afterImage: "https://picsum.photos/seed/after-2/600/400",
+  },
+  {
+    id: "cp-3",
+    customerName: "Contour Works",
+    industry: "Furniture",
+    projectType: "Office Chair Product Campaign",
+    review:
+      "Over 400 unique product shots from a single 3D asset. Zero photography shoots required.",
+    rating: 5,
+    beforeImage: "https://picsum.photos/seed/before-3/600/400",
+    afterImage: "https://picsum.photos/seed/after-3/600/400",
+  },
+];
+
+export const productsFaqs = [
+  {
+    q: "How long does production take?",
+    a: "Most single-product models deliver within 5–10 business days. Complex assemblies or large architectural models typically take 2–4 weeks. Expedited timelines are available for time-critical projects.",
+  },
+  {
+    q: "What materials are available?",
+    a: "We support PLA, ABS, PETG, Resin, Nylon, TPU, Carbon Fiber, Wood Fill and Metal Finish. Each material has specific properties suited to different applications — we'll recommend the best option for your project.",
+  },
+  {
+    q: "Can I upload my own design?",
+    a: "Yes — send us your sketches, CAD files, reference images or even hand-drawn concepts. We'll work from your materials to create a precision 3D model that matches your vision.",
+  },
+  {
+    q: "What file formats do you accept?",
+    a: "We accept STEP, IGES, SolidWorks, Fusion 360, AutoCAD, Rhino, Blender, OBJ, FBX and STL files. If your format isn't listed, ask us — we likely support it.",
+  },
+  {
+    q: "Do you offer bulk orders?",
+    a: "Yes — we regularly handle bulk orders for product catalogs, retail collections and manufacturing runs. Volume pricing and batch delivery schedules are available on request.",
+  },
+  {
+    q: "Can I customize the model?",
+    a: "Absolutely. Every model is fully customizable — size, material, color, finish and level of detail. We'll work with you through revision rounds until every detail is perfect.",
+  },
+];
+
+export const modelSizes = [
+  { value: "small", label: "Small (< 5cm)" },
+  { value: "medium", label: "Medium (5–30cm)" },
+  { value: "large", label: "Large (30–100cm)" },
+  { value: "extra-large", label: "Extra Large (> 100cm)" },
+  { value: "custom", label: "Custom Size" },
+];
+
+export const bookingBenefits = [
+  {
+    title: "High-Quality 3D Models",
+    text: "Photorealistic, production-ready 3D models with clean topology, accurate geometry and professional-grade textures.",
+  },
+  {
+    title: "Fast Turnaround",
+    text: "Most models delivered within 5–10 business days. Expedited timelines available for time-critical launches.",
+  },
+  {
+    title: "Professional Designers",
+    text: "Our team brings years of experience across industrial design, architecture, gaming and product visualization.",
+  },
+  {
+    title: "Multiple File Formats",
+    text: "We deliver in STP, IGES, OBJ, FBX, STL, GLB, USDZ, BLEND and more — whatever your pipeline requires.",
+  },
+  {
+    title: "Custom Sizes & Scales",
+    text: "From miniature components to full-scale architectural models — build at any resolution and physical scale.",
+  },
+  {
+    title: "Manufacturing Ready",
+    text: "Models optimized for CNC, 3D printing, injection molding and production — tolerances and wall thickness validated.",
+  },
+  {
+    title: "Product Visualization",
+    text: "Studio-grade renders, turntable animations and exploded views for catalogs, websites and marketing materials.",
+  },
+  {
+    title: "Affordable Pricing",
+    text: "Fixed-price quotes with no hidden fees. Transparent billing based on complexity, scope and turnaround time.",
+  },
+];
+
+export const bookingProcess = [
+  {
+    phase: "Requirement Submission",
+    number: "01",
+    steps: [
+      {
+        title: "Submit Your Brief",
+        duration: "5 min",
+        text: "Fill out the booking form with details about your model — purpose, industry, desired format and deadline.",
+      },
+      {
+        title: "Upload References",
+        duration: "5 min",
+        text: "Attach reference images, sketches, CAD files or any existing materials that help us understand your vision.",
+      },
+    ],
+  },
+  {
+    phase: "Review & Approval",
+    number: "02",
+    steps: [
+      {
+        title: "Requirements Review",
+        duration: "1 business day",
+        text: "Our team reviews your brief, assesses complexity and identifies any additional information needed to proceed.",
+      },
+      {
+        title: "Quote & Timeline",
+        duration: "1 business day",
+        text: "You receive a fixed-price quote and estimated delivery timeline. No surprises — what we quote is what you pay.",
+      },
+    ],
+  },
+  {
+    phase: "Modeling",
+    number: "03",
+    steps: [
+      {
+        title: "3D Modeling",
+        duration: "3–10 days",
+        text: "We build the model with precision geometry, proper topology and real-world scale. Progress updates shared at key milestones.",
+      },
+      {
+        title: "Quality Check",
+        duration: "1 day",
+        text: "Internal QC review for dimensional accuracy, mesh integrity, texture fidelity and format compatibility before delivery.",
+      },
+    ],
+  },
+  {
+    phase: "Delivery",
+    number: "04",
+    steps: [
+      {
+        title: "Final Delivery",
+        duration: "1 day",
+        text: "You receive the completed model in your requested formats along with a delivery report and any source files.",
+      },
+    ],
+  },
+];
+
+export const bookingFaqs = [
+  {
+    q: "What file formats do you provide?",
+    a: "We deliver in STP, IGES, SLDPRT, STL, OBJ, FBX, GLB, USDZ, BLEND and more. If your pipeline requires a specific format not listed here, just let us know — we'll accommodate it.",
+  },
+  {
+    q: "How long does it take to complete a 3D model?",
+    a: "Most single-product models are delivered within 5–10 business days from quote approval. Complex assemblies or large architectural models typically take 2–4 weeks. Expedited timelines are available on request.",
+  },
+  {
+    q: "Can I upload reference images?",
+    a: "Yes — upload sketches, photos, CAD files or any reference materials directly through the booking form. The more references you provide, the more accurately we can match your vision.",
+  },
+  {
+    q: "Can you modify existing 3D models?",
+    a: "Absolutely. Send us your existing model and a brief of what you'd like changed — geometry edits, texture updates, format conversion or optimization for a different manufacturing process.",
+  },
+  {
+    q: "Do you support commercial usage of the models?",
+    a: "Yes — you receive full commercial rights to all delivered models. We assign 100% IP to you upon final payment and never reuse or resell client work without written permission.",
+  },
+  {
+    q: "What industries do you work with?",
+    a: "We serve manufacturing, architecture, product design, automotive, aerospace, jewelry, consumer electronics, medical devices, gaming and entertainment. If it can be modeled, we've probably done something similar.",
+  },
+  {
+    q: "Is there a minimum order value?",
+    a: "Our minimum project value is $500 for simple single-object models. Most projects range from $1,200 to $8,000 depending on complexity, level of detail and intended use.",
+  },
+  {
+    q: "Do you sign NDAs?",
+    a: "Yes — we sign NDAs on request and keep all project materials confidential. Many of our clients are developing unreleased products and we take data security seriously.",
   },
 ];
 

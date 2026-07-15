@@ -24,7 +24,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 const inputClass =
-  "w-full rounded-2xl border border-input bg-transparent px-5 py-3.5 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-ring";
+  "w-full rounded-2xl border border-input bg-black px-5 py-3.5 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-ring";
 
 function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
@@ -43,7 +43,8 @@ function ContactPage() {
             </p>
           </Reveal>
           <h1 className="heading-display mt-6 max-w-3xl text-5xl md:text-7xl">
-            <StaggerText text="Let's build" /> <span className="serif-accent text-accent">something</span>
+            <StaggerText text="Let's build" />{" "}
+            <span className="serif-accent text-accent">something</span>
           </h1>
 
           <div className="mt-16 grid gap-12 md:grid-cols-12">
@@ -59,19 +60,19 @@ function ContactPage() {
                   hello@verto3d.com
                 </a>
                 <a
-                  href="tel:+15236363362"
+                  href="tel:+919876543210"
                   className="group flex items-center gap-4 text-foreground/85 transition-colors hover:text-foreground"
                 >
                   <span className="rounded-full border border-border p-3 transition-colors group-hover:border-foreground">
                     <Phone className="size-4" />
                   </span>
-                  (424) 123-4567
+                  +91 98765 43210
                 </a>
                 <p className="flex items-center gap-4 text-foreground/85">
                   <span className="rounded-full border border-border p-3">
                     <MapPin className="size-4" />
                   </span>
-                  Remote — Worldwide
+                  Mumbai, India
                 </p>
               </div>
               <div className="mt-10 rounded-3xl border border-border bg-card/50 p-7">
@@ -91,7 +92,9 @@ function ContactPage() {
                   setTimeout(() => {
                     setSubmitting(false);
                     (e.target as HTMLFormElement).reset();
-                    toast.success("Thanks for reaching out. We'll review your project and be in touch within one business day.");
+                    toast.success(
+                      "Thanks for reaching out. We'll review your project and be in touch within one business day.",
+                    );
                   }, 700);
                 }}
               >
@@ -117,7 +120,7 @@ function ContactPage() {
                       name="email"
                       type="email"
                       required
-                      placeholder="you@company.com"
+                      placeholder="you@company.in"
                       className={inputClass}
                     />
                   </div>
@@ -139,12 +142,12 @@ function ContactPage() {
                   </label>
                   <select id="budget" name="budget" className={inputClass} defaultValue="">
                     <option value="" disabled>
-                      Select a range
+                      Select a range (₹)
                     </option>
-                    <option>Under $10k</option>
-                    <option>$10k – $25k</option>
-                    <option>$25k – $50k</option>
-                    <option>$50k+</option>
+                    <option>Under ₹5L</option>
+                    <option>₹5L – ₹10L</option>
+                    <option>₹10L – ₹25L</option>
+                    <option>₹25L+</option>
                   </select>
                 </div>
                 <div>
