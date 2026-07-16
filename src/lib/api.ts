@@ -77,6 +77,13 @@ function del<T>(endpoint: string) {
   return request<T>(endpoint, { method: "DELETE" });
 }
 
-export const api = { get, post, put, del };
+function patch<T>(endpoint: string, body?: unknown) {
+  return request<T>(endpoint, {
+    method: "PATCH",
+    body: body ? JSON.stringify(body) : undefined,
+  });
+}
+
+export const api = { get, post, put, patch, del };
 export { ApiClientError };
 export type { ApiError };
