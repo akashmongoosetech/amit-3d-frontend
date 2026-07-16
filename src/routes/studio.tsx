@@ -73,7 +73,8 @@ function StudioPage() {
               <span className="text-accent">⊹</span> Our story
             </p>
             <h2 className="heading-display mt-4 text-4xl md:text-5xl">
-              From engineering roots to <span className="serif-accent text-accent">global reach</span>
+              From engineering roots to{" "}
+              <span className="serif-accent text-accent">global reach</span>
             </h2>
           </Reveal>
           <Reveal
@@ -89,11 +90,12 @@ function StudioPage() {
             <p className="leading-relaxed">
               Today we're a distributed team of 3D specialists, CAD engineers and CGI artists
               working across industrial design, architectural visualization and product rendering.
-              No account layers, no junior-only workflows. The people who scope the work do the work.
+              No account layers, no junior-only workflows. The people who scope the work do the
+              work.
             </p>
             <p className="leading-relaxed">
-              We keep our roster focused — partnering with a select number of clients at a time —
-              so every project receives the technical attention and creative care it deserves.
+              We keep our roster focused — partnering with a select number of clients at a time — so
+              every project receives the technical attention and creative care it deserves.
             </p>
           </Reveal>
         </div>

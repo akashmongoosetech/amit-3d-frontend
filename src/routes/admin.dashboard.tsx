@@ -10,9 +10,7 @@ import type { DashboardStats } from "@/hooks/useAdminData";
 
 export const Route = createFileRoute("/admin/dashboard")({
   head: () => ({
-    meta: [
-      { title: "Dashboard — Verto3D Admin" },
-    ],
+    meta: [{ title: "Dashboard — Verto3D Admin" }],
   }),
   component: DashboardPage,
 });
@@ -88,7 +86,10 @@ function DashboardPage() {
             ) : (
               <ul className="space-y-4">
                 {data.recentActivity.map((item, i) => (
-                  <li key={i} className="flex items-start justify-between gap-4 border-b border-border pb-3 last:border-0 last:pb-0">
+                  <li
+                    key={i}
+                    className="flex items-start justify-between gap-4 border-b border-border pb-3 last:border-0 last:pb-0"
+                  >
                     <div>
                       <p className="text-sm font-medium text-foreground">{item.action}</p>
                       <p className="text-xs text-muted-foreground">{item.detail}</p>
@@ -124,11 +125,18 @@ function DashboardPage() {
                     <tbody>
                       {data.recentOrders.map((o) => (
                         <tr key={o.id} className="border-b border-border last:border-0">
-                          <td className="px-5 py-3.5 text-xs font-medium text-muted-foreground">{o.id}</td>
+                          <td className="px-5 py-3.5 text-xs font-medium text-muted-foreground">
+                            {o.id}
+                          </td>
                           <td className="px-5 py-3.5 text-sm">{o.customer}</td>
-                          <td className="hidden px-5 py-3.5 text-sm text-muted-foreground sm:table-cell">{o.product}</td>
+                          <td className="hidden px-5 py-3.5 text-sm text-muted-foreground sm:table-cell">
+                            {o.product}
+                          </td>
                           <td className="px-5 py-3.5">
-                            <Badge variant={statusVariant[o.status] ?? "outline"} className="text-[10px]">
+                            <Badge
+                              variant={statusVariant[o.status] ?? "outline"}
+                              className="text-[10px]"
+                            >
                               {o.status}
                             </Badge>
                           </td>

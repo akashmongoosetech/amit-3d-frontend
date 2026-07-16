@@ -312,10 +312,7 @@ function BookingsPage() {
               </thead>
               <tbody>
                 {display.map((b: Booking) => (
-                  <tr
-                    key={b._id}
-                    className="border-b border-border last:border-0 hover:bg-card/20"
-                  >
+                  <tr key={b._id} className="border-b border-border last:border-0 hover:bg-card/20">
                     <td className="whitespace-nowrap px-5 py-3.5 font-medium text-foreground">
                       {b.name}
                     </td>
@@ -388,12 +385,7 @@ function BookingsPage() {
                   Prev
                 </button>
                 {Array.from({ length: pagination.totalPages }, (_, i) => i + 1)
-                  .filter(
-                    (n) =>
-                      n === 1 ||
-                      n === pagination.totalPages ||
-                      Math.abs(n - page) <= 1,
-                  )
+                  .filter((n) => n === 1 || n === pagination.totalPages || Math.abs(n - page) <= 1)
                   .map((n, idx, arr) => (
                     <Fragment key={n}>
                       {idx > 0 && arr[idx - 1] !== n - 1 && (

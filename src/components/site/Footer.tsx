@@ -27,8 +27,8 @@ export function Footer() {
               VERTO<span className="align-super text-[0.55em] text-muted-foreground">3D</span>
             </p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              A professional 3D modeling and visualization studio serving manufacturing, architecture,
-              product design and engineering clients worldwide.
+              A professional 3D modeling and visualization studio serving manufacturing,
+              architecture, product design and engineering clients worldwide.
             </p>
             <form
               className="mt-8 flex max-w-sm items-center gap-2"

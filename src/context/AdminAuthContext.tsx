@@ -57,14 +57,18 @@ function loadSession(): StoredSession | null {
 function saveSession(session: StoredSession) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
-  } catch {}
+  } catch {
+    /* ignore */
+  }
 }
 
 function clearSession() {
   try {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem(PROFILE_KEY);
-  } catch {}
+  } catch {
+    /* ignore */
+  }
 }
 
 function loadProfileImage(): string | null {
@@ -91,7 +95,9 @@ function saveProfileImage(dataUrl: string | null) {
     } else {
       localStorage.removeItem(PROFILE_KEY);
     }
-  } catch {}
+  } catch {
+    /* ignore */
+  }
 }
 
 export function AdminAuthProvider({ children }: { children: ReactNode }) {
@@ -107,7 +113,8 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    api.get<AdminUser>("/auth/me")
+    api
+      .get<AdminUser>("/auth/me")
       .then((admin) => {
         saveSession({ token: stored.token, admin });
         setToken(stored.token);
@@ -163,7 +170,9 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
   const logout = useCallback(async () => {
     try {
       await api.post("/auth/logout");
-    } catch {}
+    } catch {
+      /* ignore */
+    }
     clearSession();
     setToken(null);
     setUser(null);
@@ -179,7 +188,18 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AdminAuthContext.Provider value={{ isAuthenticated, user, token, profileImage, updateProfileImage, login, signup, logout }}>
+    <AdminAuthContext.Provider
+      value={{
+        isAuthenticated,
+        user,
+        token,
+        profileImage,
+        updateProfileImage,
+        login,
+        signup,
+        logout,
+      }}
+    >
       {children}
     </AdminAuthContext.Provider>
   );

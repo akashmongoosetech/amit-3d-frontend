@@ -11,7 +11,8 @@ export const Route = createFileRoute("/news/")({
       { title: "Insights — Verto3D 3D Modeling & Visualization" },
       {
         name: "description",
-        content: "Industry insights, technical guides and expert takes on 3D modeling, product visualization, architectural rendering and CGI from Verto3D.",
+        content:
+          "Industry insights, technical guides and expert takes on 3D modeling, product visualization, architectural rendering and CGI from Verto3D.",
       },
       { property: "og:title", content: "Insights — Verto3D 3D Modeling & Visualization" },
       {
@@ -34,15 +35,15 @@ function NewsPage() {
             <span className="text-accent">⊹</span> Latest insights
           </p>
         </Reveal>
-          <h1 className="heading-display mt-6 max-w-3xl text-5xl md:text-7xl">
-            <StaggerText text="Industry insights," />{" "}
-            <span className="serif-accent text-accent">expert takes</span>
-          </h1>
-          <Reveal delay={0.2}>
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
-              Thought leadership, technical guides and trends from the Verto3D team.
-            </p>
-          </Reveal>
+        <h1 className="heading-display mt-6 max-w-3xl text-5xl md:text-7xl">
+          <StaggerText text="Industry insights," />{" "}
+          <span className="serif-accent text-accent">expert takes</span>
+        </h1>
+        <Reveal delay={0.2}>
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
+            Thought leadership, technical guides and trends from the Verto3D team.
+          </p>
+        </Reveal>
       </section>
 
       <section className="container-site py-16 md:py-24">

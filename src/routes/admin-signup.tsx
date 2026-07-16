@@ -123,10 +123,7 @@ function AdminSignupPage() {
 
   return (
     <div className="flex min-h-dvh items-center justify-center px-4 py-20 sm:px-6 sm:py-24 md:py-32">
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
-      >
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute -left-40 top-20 size-[25rem] rounded-full bg-accent/8 blur-[140px]" />
         <div className="absolute -bottom-40 right-[-10%] size-[30rem] rounded-full bg-accent/10 blur-[140px]" />
       </div>
@@ -138,8 +135,7 @@ function AdminSignupPage() {
               <span className="text-accent">⊹</span> Verto3D
             </p>
             <h1 className="heading-display text-3xl sm:text-4xl md:text-5xl">
-              Register{" "}
-              <span className="serif-accent text-accent">Administrator</span>
+              Register <span className="serif-accent text-accent">Administrator</span>
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
               Create your admin account to manage Verto3D
@@ -149,9 +145,7 @@ function AdminSignupPage() {
           <form onSubmit={onSubmit} className="space-y-4 sm:space-y-5">
             {/* Profile Picture */}
             <div>
-              <label className="mb-1.5 block text-sm text-muted-foreground">
-                Profile Picture
-              </label>
+              <label className="mb-1.5 block text-sm text-muted-foreground">Profile Picture</label>
               {profilePreview ? (
                 <div className="flex flex-col items-center gap-3 sm:flex-row">
                   <img
@@ -205,9 +199,7 @@ function AdminSignupPage() {
                 onChange={handleProfileFile}
               />
               {profileError && (
-                <p className="mt-1.5 text-[0.8rem] font-medium text-destructive">
-                  {profileError}
-                </p>
+                <p className="mt-1.5 text-[0.8rem] font-medium text-destructive">{profileError}</p>
               )}
             </div>
 
@@ -298,11 +290,7 @@ function AdminSignupPage() {
                   aria-label={showPassword ? "Hide password" : "Show password"}
                   tabIndex={-1}
                 >
-                  {showPassword ? (
-                    <EyeOff className="size-4" />
-                  ) : (
-                    <Eye className="size-4" />
-                  )}
+                  {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
                 </button>
               </div>
             </div>

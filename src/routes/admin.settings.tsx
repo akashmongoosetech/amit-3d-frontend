@@ -10,9 +10,7 @@ import { Label } from "@/components/ui/label";
 
 export const Route = createFileRoute("/admin/settings")({
   head: () => ({
-    meta: [
-      { title: "Settings — Verto3D Admin" },
-    ],
+    meta: [{ title: "Settings — Verto3D Admin" }],
   }),
   component: SettingsPage,
 });
@@ -23,13 +21,7 @@ const inputClass =
 const selectClass =
   "w-full rounded-xl border border-input bg-black/40 px-4 py-2.5 text-sm outline-none transition-colors focus:border-ring [&>option]:bg-card";
 
-function SettingCard({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+function SettingCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <Card>
       <CardHeader>

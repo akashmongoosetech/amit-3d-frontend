@@ -78,7 +78,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Industry-grade 3D modeling, product visualization, architectural rendering and industrial design services for manufacturing, architecture and e-commerce.",
       },
       { name: "author", content: "Verto3D Studio" },
-      { property: "og:title", content: "Verto3D — Professional 3D Modeling & Visualization Studio" },
+      {
+        property: "og:title",
+        content: "Verto3D — Professional 3D Modeling & Visualization Studio",
+      },
       {
         property: "og:description",
         content:

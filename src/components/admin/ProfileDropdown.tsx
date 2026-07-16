@@ -15,9 +15,7 @@ export function ProfileDropdown() {
   const { user, profileImage, logout } = useAdminAuth();
   const router = useRouter();
 
-  const initials = user
-    ? `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`
-    : "AD";
+  const initials = user ? `${user.firstName.charAt(0)}${user.lastName.charAt(0)}` : "AD";
 
   const handleLogout = () => {
     logout();
@@ -27,9 +25,14 @@ export function ProfileDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="focus-visible:ring-ring rounded-full outline-none focus-visible:ring-1" aria-label="Profile menu">
+        <button
+          className="focus-visible:ring-ring rounded-full outline-none focus-visible:ring-1"
+          aria-label="Profile menu"
+        >
           <Avatar className="size-8 cursor-pointer border border-border">
-            {profileImage && <AvatarImage src={profileImage} alt={`${user?.firstName} ${user?.lastName}`} />}
+            {profileImage && (
+              <AvatarImage src={profileImage} alt={`${user?.firstName} ${user?.lastName}`} />
+            )}
             <AvatarFallback className="bg-accent/10 text-accent text-xs font-semibold">
               {initials}
             </AvatarFallback>
@@ -42,7 +45,9 @@ export function ProfileDropdown() {
       >
         <DropdownMenuLabel className="flex items-center gap-3 p-2">
           <Avatar className="size-9 border border-border">
-            {profileImage && <AvatarImage src={profileImage} alt={`${user?.firstName} ${user?.lastName}`} />}
+            {profileImage && (
+              <AvatarImage src={profileImage} alt={`${user?.firstName} ${user?.lastName}`} />
+            )}
             <AvatarFallback className="bg-accent/10 text-accent text-xs font-semibold">
               {initials}
             </AvatarFallback>

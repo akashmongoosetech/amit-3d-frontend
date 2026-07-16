@@ -14,10 +14,7 @@ import { toast } from "sonner";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { EmptyState } from "@/components/admin/EmptyState";
 import { BookingViewModal } from "@/components/admin/BookingViewModal";
-import {
-  useOrdersData,
-  updateOrderOrderStatus,
-} from "@/hooks/useAdminData";
+import { useOrdersData, updateOrderOrderStatus } from "@/hooks/useAdminData";
 import type { Booking, BookingStatus, OrderItem, OrderStatus } from "@/hooks/useAdminData";
 
 export const Route = createFileRoute("/admin/orders")({
@@ -41,22 +38,20 @@ const statusStyles: Record<BookingStatus, string> = {
 };
 
 const orderStatusColors: Record<OrderStatus, string> = {
+  "Start Create": "border-gray-500/30 bg-gray-500/5 text-gray-400",
   "Model Complete": "border-emerald-500/30 bg-emerald-500/5 text-emerald-400",
   Dispatched: "border-blue-500/30 bg-blue-500/5 text-blue-400",
   Shipped: "border-purple-500/30 bg-purple-500/5 text-purple-400",
 };
 
 const colorMap: Record<string, string> = {
+  "Start Create": "bg-gray-400",
   "Model Complete": "bg-emerald-400",
   Dispatched: "bg-blue-400",
   Shipped: "bg-purple-400",
 };
 
-const allOrderStatuses: OrderStatus[] = [
-  "Model Complete",
-  "Dispatched",
-  "Shipped",
-];
+const allOrderStatuses: OrderStatus[] = ["Start Create", "Model Complete", "Dispatched", "Shipped"];
 
 function OrderStatusBadge({ status }: { status: OrderStatus }) {
   return (
@@ -177,7 +172,11 @@ function OrdersPage() {
   const handleOrderStatusUpdate = async (id: string, orderStatus: OrderStatus) => {
     try {
       const updated = await updateOrderOrderStatus(id, orderStatus);
-      setLocalOrders((prev) => (prev ?? orders).map((o) => (o._id === id ? { ...o, orderStatus: updated.orderStatus } : o)));
+      setLocalOrders((prev) =>
+        (prev ?? orders).map((o) =>
+          o._id === id ? { ...o, orderStatus: updated.orderStatus } : o,
+        ),
+      );
       toast.success(`Order status updated to ${orderStatus}`);
     } catch {
       toast.error("Failed to update order status");
@@ -193,10 +192,7 @@ function OrdersPage() {
 
   return (
     <div>
-      <PageHeader
-        title="Orders"
-        description="Track and manage customer orders"
-      />
+      <PageHeader title="Orders" description="Track and manage customer orders" />
 
       <div className="mb-5 space-y-3">
         <div className="flex flex-wrap items-end gap-3">
@@ -258,9 +254,15 @@ function OrdersPage() {
                 <tr className="border-b border-border bg-card/30 text-left text-xs uppercase text-muted-foreground">
                   <th className="whitespace-nowrap px-5 py-3.5 font-medium">Order ID</th>
                   <th className="whitespace-nowrap px-5 py-3.5 font-medium">Customer</th>
-                  <th className="hidden whitespace-nowrap px-5 py-3.5 font-medium sm:table-cell">Email</th>
-                  <th className="hidden whitespace-nowrap px-5 py-3.5 font-medium sm:table-cell">Mobile</th>
-                  <th className="hidden whitespace-nowrap px-5 py-3.5 font-medium md:table-cell">Model Name</th>
+                  <th className="hidden whitespace-nowrap px-5 py-3.5 font-medium sm:table-cell">
+                    Email
+                  </th>
+                  <th className="hidden whitespace-nowrap px-5 py-3.5 font-medium sm:table-cell">
+                    Mobile
+                  </th>
+                  <th className="hidden whitespace-nowrap px-5 py-3.5 font-medium md:table-cell">
+                    Model Name
+                  </th>
                   <th className="whitespace-nowrap px-5 py-3.5 font-medium">Booking Status</th>
                   <th className="whitespace-nowrap px-5 py-3.5 font-medium">Order Status</th>
                   <th className="whitespace-nowrap px-5 py-3.5 font-medium">Date</th>
@@ -269,10 +271,7 @@ function OrdersPage() {
               </thead>
               <tbody>
                 {display.map((o: OrderItem) => (
-                  <tr
-                    key={o._id}
-                    className="border-b border-border last:border-0 hover:bg-card/20"
-                  >
+                  <tr key={o._id} className="border-b border-border last:border-0 hover:bg-card/20">
                     <td className="whitespace-nowrap px-5 py-3.5 text-xs font-medium text-muted-foreground">
                       {o._id.slice(-6).toUpperCase()}
                     </td>
@@ -346,12 +345,7 @@ function OrdersPage() {
                   Prev
                 </button>
                 {Array.from({ length: pagination.totalPages }, (_, i) => i + 1)
-                  .filter(
-                    (n) =>
-                      n === 1 ||
-                      n === pagination.totalPages ||
-                      Math.abs(n - page) <= 1,
-                  )
+                  .filter((n) => n === 1 || n === pagination.totalPages || Math.abs(n - page) <= 1)
                   .map((n, idx, arr) => (
                     <Fragment key={n}>
                       {idx > 0 && arr[idx - 1] !== n - 1 && (

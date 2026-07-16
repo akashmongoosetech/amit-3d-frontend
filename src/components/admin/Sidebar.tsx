@@ -1,12 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import {
-  LayoutDashboard,
-  Users,
-  Mail,
-  ShoppingCart,
-  Settings,
-  CalendarCheck,
-} from "lucide-react";
+import { LayoutDashboard, Users, Mail, ShoppingCart, Settings, CalendarCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SidebarProps {

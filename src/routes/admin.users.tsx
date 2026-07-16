@@ -9,9 +9,7 @@ import type { User } from "@/hooks/useAdminData";
 
 export const Route = createFileRoute("/admin/users")({
   head: () => ({
-    meta: [
-      { title: "Users — Verto3D Admin" },
-    ],
+    meta: [{ title: "Users — Verto3D Admin" }],
   }),
   component: UsersPage,
 });
@@ -50,43 +48,52 @@ function UsersPage() {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center py-16 text-sm text-muted-foreground">Loading users...</div>
+        <div className="flex items-center justify-center py-16 text-sm text-muted-foreground">
+          Loading users...
+        </div>
       ) : users.length > 0 ? (
         <div className="overflow-x-auto rounded-xl border border-border">
           <div className="min-w-160">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border bg-card/30 text-left text-xs uppercase text-muted-foreground">
-                <th className="px-5 py-3.5 font-medium">Name</th>
-                <th className="px-5 py-3.5 font-medium">Email</th>
-                <th className="hidden px-5 py-3.5 font-medium sm:table-cell">Role</th>
-                <th className="px-5 py-3.5 font-medium">Status</th>
-                <th className="hidden px-5 py-3.5 font-medium md:table-cell">Joined</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((u: User) => (
-                <tr key={u._id || u.email} className="border-b border-border last:border-0 hover:bg-card/20">
-                  <td className="px-5 py-3.5 font-medium text-foreground">
-                    {u.firstName} {u.lastName}
-                  </td>
-                  <td className="px-5 py-3.5 text-muted-foreground">{u.email}</td>
-                  <td className="hidden px-5 py-3.5 text-muted-foreground sm:table-cell">{u.role}</td>
-                  <td className="px-5 py-3.5">
-                    <Badge
-                      variant={u.isActive ? "default" : "secondary"}
-                      className="text-[10px]"
-                    >
-                      {u.isActive ? "Active" : "Inactive"}
-                    </Badge>
-                  </td>
-                  <td className="hidden px-5 py-3.5 text-muted-foreground md:table-cell">
-                    {u.createdAt ? new Date(u.createdAt).toLocaleDateString("en-IN", { month: "short", year: "numeric" }) : "-"}
-                  </td>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border bg-card/30 text-left text-xs uppercase text-muted-foreground">
+                  <th className="px-5 py-3.5 font-medium">Name</th>
+                  <th className="px-5 py-3.5 font-medium">Email</th>
+                  <th className="hidden px-5 py-3.5 font-medium sm:table-cell">Role</th>
+                  <th className="px-5 py-3.5 font-medium">Status</th>
+                  <th className="hidden px-5 py-3.5 font-medium md:table-cell">Joined</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {users.map((u: User) => (
+                  <tr
+                    key={u._id || u.email}
+                    className="border-b border-border last:border-0 hover:bg-card/20"
+                  >
+                    <td className="px-5 py-3.5 font-medium text-foreground">
+                      {u.firstName} {u.lastName}
+                    </td>
+                    <td className="px-5 py-3.5 text-muted-foreground">{u.email}</td>
+                    <td className="hidden px-5 py-3.5 text-muted-foreground sm:table-cell">
+                      {u.role}
+                    </td>
+                    <td className="px-5 py-3.5">
+                      <Badge variant={u.isActive ? "default" : "secondary"} className="text-[10px]">
+                        {u.isActive ? "Active" : "Inactive"}
+                      </Badge>
+                    </td>
+                    <td className="hidden px-5 py-3.5 text-muted-foreground md:table-cell">
+                      {u.createdAt
+                        ? new Date(u.createdAt).toLocaleDateString("en-IN", {
+                            month: "short",
+                            year: "numeric",
+                          })
+                        : "-"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       ) : (

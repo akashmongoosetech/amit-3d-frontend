@@ -33,7 +33,9 @@ export function ContactViewModal({ contact, open, onClose }: ContactViewModalPro
     <div
       ref={overlayRef}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
-      onClick={(e) => { if (e.target === overlayRef.current) onClose(); }}
+      onClick={(e) => {
+        if (e.target === overlayRef.current) onClose();
+      }}
     >
       <div className="flex w-full max-w-lg flex-col rounded-2xl border border-border bg-card shadow-2xl max-h-[90vh]">
         <div className="flex shrink-0 items-center justify-between border-b border-border px-6 py-4">
@@ -55,15 +57,21 @@ export function ContactViewModal({ contact, open, onClose }: ContactViewModalPro
           <Field label="Budget" value={contact.budget || "-"} />
 
           <div>
-            <span className="mb-1 block text-xs uppercase tracking-wider text-muted-foreground">Status</span>
-            <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-medium ${statusStyles[contact.status]}`}>
+            <span className="mb-1 block text-xs uppercase tracking-wider text-muted-foreground">
+              Status
+            </span>
+            <span
+              className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-medium ${statusStyles[contact.status]}`}
+            >
               <span className="size-1.5 rounded-full currentColor opacity-70" />
               {contact.status}
             </span>
           </div>
 
           <div>
-            <span className="mb-1 block text-xs uppercase tracking-wider text-muted-foreground">Message</span>
+            <span className="mb-1 block text-xs uppercase tracking-wider text-muted-foreground">
+              Message
+            </span>
             <p className="rounded-xl border border-border bg-black/40 px-4 py-3 text-sm leading-relaxed text-muted-foreground">
               {contact.message}
             </p>
@@ -92,7 +100,9 @@ export function ContactViewModal({ contact, open, onClose }: ContactViewModalPro
 function Field({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <span className="mb-1 block text-xs uppercase tracking-wider text-muted-foreground">{label}</span>
+      <span className="mb-1 block text-xs uppercase tracking-wider text-muted-foreground">
+        {label}
+      </span>
       <span className="text-sm text-foreground">{value}</span>
     </div>
   );

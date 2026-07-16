@@ -16,6 +16,7 @@ const statusStyles: Record<BookingStatus, string> = {
 };
 
 const orderStatusStyles: Record<OrderStatus, string> = {
+  "Start Create": "border-gray-500/30 bg-gray-500/5 text-gray-400",
   "Model Complete": "border-emerald-500/30 bg-emerald-500/5 text-emerald-400",
   Dispatched: "border-blue-500/30 bg-blue-500/5 text-blue-400",
   Shipped: "border-purple-500/30 bg-purple-500/5 text-purple-400",

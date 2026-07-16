@@ -171,15 +171,9 @@ export interface Booking {
 }
 
 export type BookingStatus =
-  | "New Order"
-  | "Contact"
-  | "Payment"
-  | "Start Project"
-  | "Complete"
-  | "On Way"
-  | "Delivered";
+  "New Order" | "Contact" | "Payment" | "Start Project" | "Complete" | "On Way" | "Delivered";
 
-export type OrderStatus = "Model Complete" | "Dispatched" | "Shipped";
+export type OrderStatus = "Start Create" | "Model Complete" | "Dispatched" | "Shipped";
 
 export interface OrderItem {
   _id: string;

@@ -35,7 +35,10 @@ export function AdminLayout() {
 
       {/* Mobile sidebar — Sheet */}
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-        <SheetContent side="left" className="flex w-60 flex-col border-r border-border bg-background p-6 pt-10">
+        <SheetContent
+          side="left"
+          className="flex w-60 flex-col border-r border-border bg-background p-6 pt-10"
+        >
           <div className="mb-8 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
               <span className="text-accent text-lg">⊹</span>

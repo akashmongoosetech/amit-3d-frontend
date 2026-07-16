@@ -31,9 +31,7 @@ export function StatsCard({ label, value, icon: Icon, trend, trendUp }: StatsCar
           ) : (
             <TrendingDown className="size-3.5 text-red-500" />
           )}
-          <span className={cn(trendUp ? "text-green-500" : "text-red-500")}>
-            {trend}
-          </span>
+          <span className={cn(trendUp ? "text-green-500" : "text-red-500")}>{trend}</span>
           <span className="text-muted-foreground">vs last month</span>
         </div>
       )}
