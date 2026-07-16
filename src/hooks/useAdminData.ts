@@ -288,3 +288,30 @@ export function getOrderById(id: string) {
 export function updateOrderOrderStatus(id: string, orderStatus: OrderStatus) {
   return api.patch<OrderItem>(`/orders/${id}/status`, { orderStatus });
 }
+
+export interface AdminProfile {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobile: string;
+  username: string;
+  profileImage: string;
+  role: string;
+}
+
+export function getAdminProfile() {
+  return api.get<AdminProfile>("/admin/profile");
+}
+
+export function updateAdminProfile(formData: FormData) {
+  return api.putFormData<AdminProfile>("/admin/profile", formData);
+}
+
+export function changeAdminPassword(data: {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}) {
+  return api.put<null>("/admin/change-password", data);
+}
