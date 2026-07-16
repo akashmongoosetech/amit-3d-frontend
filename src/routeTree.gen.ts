@@ -29,6 +29,7 @@ import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminContactsRouteImport } from './routes/admin.contacts'
+import { Route as AdminBookingsRouteImport } from './routes/admin.bookings'
 
 const StudioRoute = StudioRouteImport.update({
   id: '/studio',
@@ -130,6 +131,11 @@ const AdminContactsRoute = AdminContactsRouteImport.update({
   path: '/contacts',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminBookingsRoute = AdminBookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -142,6 +148,7 @@ export interface FileRoutesByFullPath {
   '/products': typeof ProductsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/admin/bookings': typeof AdminBookingsRoute
   '/admin/contacts': typeof AdminContactsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/orders': typeof AdminOrdersRoute
@@ -163,6 +170,7 @@ export interface FileRoutesByTo {
   '/products': typeof ProductsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/admin/bookings': typeof AdminBookingsRoute
   '/admin/contacts': typeof AdminContactsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/orders': typeof AdminOrdersRoute
@@ -186,6 +194,7 @@ export interface FileRoutesById {
   '/products': typeof ProductsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/admin/bookings': typeof AdminBookingsRoute
   '/admin/contacts': typeof AdminContactsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/orders': typeof AdminOrdersRoute
@@ -210,6 +219,7 @@ export interface FileRouteTypes {
     | '/products'
     | '/sitemap.xml'
     | '/studio'
+    | '/admin/bookings'
     | '/admin/contacts'
     | '/admin/dashboard'
     | '/admin/orders'
@@ -231,6 +241,7 @@ export interface FileRouteTypes {
     | '/products'
     | '/sitemap.xml'
     | '/studio'
+    | '/admin/bookings'
     | '/admin/contacts'
     | '/admin/dashboard'
     | '/admin/orders'
@@ -253,6 +264,7 @@ export interface FileRouteTypes {
     | '/products'
     | '/sitemap.xml'
     | '/studio'
+    | '/admin/bookings'
     | '/admin/contacts'
     | '/admin/dashboard'
     | '/admin/orders'
@@ -424,10 +436,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminContactsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/bookings': {
+      id: '/admin/bookings'
+      path: '/bookings'
+      fullPath: '/admin/bookings'
+      preLoaderRoute: typeof AdminBookingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminBookingsRoute: typeof AdminBookingsRoute
   AdminContactsRoute: typeof AdminContactsRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminOrdersRoute: typeof AdminOrdersRoute
@@ -437,6 +457,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminBookingsRoute: AdminBookingsRoute,
   AdminContactsRoute: AdminContactsRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminOrdersRoute: AdminOrdersRoute,

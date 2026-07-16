@@ -54,6 +54,27 @@ async function request<T>(
   return json.data as T;
 }
 
+async function requestFormData<T>(
+  endpoint: string,
+  formData: FormData,
+  headers: Record<string, string> = {},
+): Promise<T> {
+  const res = await fetch(`${API_BASE}${endpoint}`, {
+    method: "POST",
+    headers,
+    body: formData,
+    credentials: "include",
+  });
+
+  const json = await res.json();
+
+  if (!res.ok || !json.success) {
+    throw new ApiClientError(json.message || "Request failed", res.status);
+  }
+
+  return json.data as T;
+}
+
 function get<T>(endpoint: string, params?: Record<string, string>) {
   const query = params ? "?" + new URLSearchParams(params).toString() : "";
   return request<T>(`${endpoint}${query}`, { method: "GET" });
@@ -84,6 +105,15 @@ function patch<T>(endpoint: string, body?: unknown) {
   });
 }
 
-export const api = { get, post, put, patch, del };
+function postFormData<T>(endpoint: string, formData: FormData) {
+  const token = getToken();
+  const headers: Record<string, string> = {};
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+  return requestFormData<T>(endpoint, formData, headers);
+}
+
+export const api = { get, post, put, patch, del, postFormData };
 export { ApiClientError };
 export type { ApiError };

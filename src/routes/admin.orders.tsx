@@ -56,7 +56,8 @@ function OrdersPage() {
       {loading ? (
         <div className="flex items-center justify-center py-16 text-sm text-muted-foreground">Loading orders...</div>
       ) : orders.length > 0 ? (
-        <div className="overflow-hidden rounded-xl border border-border">
+        <div className="overflow-x-auto rounded-xl border border-border">
+          <div className="min-w-160">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-card/30 text-left text-xs uppercase text-muted-foreground">
@@ -85,6 +86,7 @@ function OrdersPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       ) : (
         <EmptyState

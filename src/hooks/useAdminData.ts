@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from "react";
 import { api } from "@/lib/api";
 
-interface DashboardStats {
+export interface DashboardStats {
   label: string;
   value: string;
   trend: string;
@@ -164,6 +164,85 @@ export function useContacts() {
 
 export function updateContactStatus(id: string, status: ContactStatus) {
   return api.patch<Contact>(`/contact/${id}/status`, { status });
+}
+
+export interface Booking {
+  _id: string;
+  name: string;
+  email: string;
+  mobile: string;
+  modelName: string;
+  modelSize: string;
+  message: string;
+  referenceImage: string;
+  status: BookingStatus;
+  createdAt: string;
+}
+
+export type BookingStatus =
+  | "New Order"
+  | "Contact"
+  | "Payment"
+  | "Start Project"
+  | "Complete"
+  | "On Way"
+  | "Delivered";
+
+export interface BookingFilters {
+  search?: string;
+  status?: string;
+  page?: number;
+  limit?: number;
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
+}
+
+export interface BookingsResponse {
+  bookings: Booking[];
+  pagination: PaginationInfo;
+}
+
+export function useBookings() {
+  const [data, setData] = useState<Booking[]>([]);
+  const [pagination, setPagination] = useState<PaginationInfo | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const search = useCallback(async (filters: BookingFilters) => {
+    setLoading(true);
+    const params: Record<string, string> = {};
+    if (filters.search) params.search = filters.search.trim();
+    if (filters.status && filters.status !== "All") params.status = filters.status;
+    if (filters.page) params.page = String(filters.page);
+    if (filters.limit) params.limit = String(filters.limit);
+    if (filters.sortBy) params.sortBy = filters.sortBy;
+    if (filters.sortOrder) params.sortOrder = filters.sortOrder;
+
+    try {
+      const res = await api.get<BookingsResponse>("/book-model", params);
+      setData(res.bookings);
+      setPagination(res.pagination);
+    } catch {
+      setData([]);
+      setPagination(null);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  return { data, pagination, loading, search };
+}
+
+export function updateBookingStatus(id: string, status: BookingStatus) {
+  return api.patch<Booking>(`/book-model/${id}/status`, { status });
+}
+
+export function deleteBooking(id: string) {
+  return api.del<null>(`/book-model/${id}`);
+}
+
+export async function getBookingStatuses(): Promise<string[]> {
+  const data = await api.get<string[]>("/book-model/statuses");
+  return data;
 }
 
 export function useOrders(search: string) {

@@ -19,6 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
+import { api, ApiClientError } from "@/lib/api";
 import { bookingBenefits, bookingProcess, bookingFaqs, modelSizes } from "@/lib/data";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
@@ -104,18 +105,34 @@ function BookModelPage() {
     setFileName(file.name);
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (values: BookingFormValues) => {
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setSubmitting(false);
-    setSuccess(true);
-    form.reset();
-    setFileName(null);
-    setCharCount(0);
-    if (fileInputRef.current) fileInputRef.current.value = "";
-    toast.success(
-      "Booking request submitted successfully! We'll be in touch within one business day.",
-    );
+    try {
+      const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("mobile", values.phone);
+      formData.append("modelSize", values.modelSize);
+      formData.append("message", values.message);
+      if (fileInputRef.current?.files?.[0]) {
+        formData.append("referenceImage", fileInputRef.current.files[0]);
+      }
+      await api.postFormData<{ id: string }>("/book-model", formData);
+      setSuccess(true);
+      form.reset();
+      setFileName(null);
+      setCharCount(0);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      toast.success(
+        "Booking request submitted successfully! We'll be in touch within one business day.",
+      );
+    } catch (err) {
+      toast.error(
+        err instanceof ApiClientError ? err.message : "Submission failed. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (success) {

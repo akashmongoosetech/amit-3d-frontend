@@ -110,32 +110,34 @@ function DashboardPage() {
               <p className="px-5 py-10 text-center text-sm text-muted-foreground">No orders yet</p>
             ) : (
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-border text-left text-xs uppercase text-muted-foreground">
-                      <th className="px-5 py-3 font-medium">Order</th>
-                      <th className="px-5 py-3 font-medium">Customer</th>
-                      <th className="hidden px-5 py-3 font-medium sm:table-cell">Product</th>
-                      <th className="px-5 py-3 font-medium">Status</th>
-                      <th className="px-5 py-3 font-medium text-right">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.recentOrders.map((o) => (
-                      <tr key={o.id} className="border-b border-border last:border-0">
-                        <td className="px-5 py-3.5 text-xs font-medium text-muted-foreground">{o.id}</td>
-                        <td className="px-5 py-3.5 text-sm">{o.customer}</td>
-                        <td className="hidden px-5 py-3.5 text-sm text-muted-foreground sm:table-cell">{o.product}</td>
-                        <td className="px-5 py-3.5">
-                          <Badge variant={statusVariant[o.status] ?? "outline"} className="text-[10px]">
-                            {o.status}
-                          </Badge>
-                        </td>
-                        <td className="px-5 py-3.5 text-right text-sm font-medium">{o.amount}</td>
+                <div className="min-w-160">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-border text-left text-xs uppercase text-muted-foreground">
+                        <th className="px-5 py-3 font-medium">Order</th>
+                        <th className="px-5 py-3 font-medium">Customer</th>
+                        <th className="hidden px-5 py-3 font-medium sm:table-cell">Product</th>
+                        <th className="px-5 py-3 font-medium">Status</th>
+                        <th className="px-5 py-3 font-medium text-right">Amount</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {data.recentOrders.map((o) => (
+                        <tr key={o.id} className="border-b border-border last:border-0">
+                          <td className="px-5 py-3.5 text-xs font-medium text-muted-foreground">{o.id}</td>
+                          <td className="px-5 py-3.5 text-sm">{o.customer}</td>
+                          <td className="hidden px-5 py-3.5 text-sm text-muted-foreground sm:table-cell">{o.product}</td>
+                          <td className="px-5 py-3.5">
+                            <Badge variant={statusVariant[o.status] ?? "outline"} className="text-[10px]">
+                              {o.status}
+                            </Badge>
+                          </td>
+                          <td className="px-5 py-3.5 text-right text-sm font-medium">{o.amount}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             )}
           </CardContent>

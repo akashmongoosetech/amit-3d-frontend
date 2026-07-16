@@ -5,6 +5,7 @@ import {
   Mail,
   ShoppingCart,
   Settings,
+  CalendarCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -16,6 +17,7 @@ const navItems = [
   { label: "Dashboard", to: "/admin/dashboard", icon: LayoutDashboard },
   { label: "Users", to: "/admin/users", icon: Users },
   { label: "Contacts", to: "/admin/contacts", icon: Mail },
+  { label: "Bookings", to: "/admin/bookings", icon: CalendarCheck },
   { label: "Orders", to: "/admin/orders", icon: ShoppingCart },
   { label: "Settings", to: "/admin/settings", icon: Settings },
 ];
