@@ -76,16 +76,6 @@ export interface ContactsResponse {
   pagination: PaginationInfo;
 }
 
-export interface Order {
-  _id: string;
-  id: string;
-  customer: string;
-  product: string;
-  status: string;
-  amount: string;
-  date: string;
-}
-
 export function useDashboardData() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -176,6 +166,7 @@ export interface Booking {
   message: string;
   referenceImage: string;
   status: BookingStatus;
+  orderStatus?: OrderStatus;
   createdAt: string;
 }
 
@@ -187,6 +178,28 @@ export type BookingStatus =
   | "Complete"
   | "On Way"
   | "Delivered";
+
+export type OrderStatus = "Model Complete" | "Dispatched" | "Shipped";
+
+export interface OrderItem {
+  _id: string;
+  name: string;
+  email: string;
+  mobile: string;
+  modelName: string;
+  modelSize: string;
+  message: string;
+  referenceImage: string;
+  status: BookingStatus;
+  orderStatus: OrderStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface OrdersResponse {
+  orders: OrderItem[];
+  pagination: PaginationInfo;
+}
 
 export interface BookingFilters {
   search?: string;
@@ -245,24 +258,39 @@ export async function getBookingStatuses(): Promise<string[]> {
   return data;
 }
 
-export function useOrders(search: string) {
-  const [data, setData] = useState<Order[]>([]);
-  const [loading, setLoading] = useState(true);
+export function useOrdersData() {
+  const [data, setData] = useState<OrderItem[]>([]);
+  const [pagination, setPagination] = useState<PaginationInfo | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  const search = useCallback(async (filters: BookingFilters) => {
     setLoading(true);
-    api
-      .get<Order[]>("/admin/orders", search ? { search } : undefined)
-      .then((res) => {
-        setData(res);
-      })
-      .catch(() => {
-        setData([]);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [search]);
+    const params: Record<string, string> = {};
+    if (filters.search) params.search = filters.search.trim();
+    if (filters.page) params.page = String(filters.page);
+    if (filters.limit) params.limit = String(filters.limit);
+    if (filters.sortBy) params.sortBy = filters.sortBy;
+    if (filters.sortOrder) params.sortOrder = filters.sortOrder;
 
-  return { data, loading };
+    try {
+      const res = await api.get<OrdersResponse>("/orders", params);
+      setData(res.orders);
+      setPagination(res.pagination);
+    } catch {
+      setData([]);
+      setPagination(null);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  return { data, pagination, loading, search };
+}
+
+export function getOrderById(id: string) {
+  return api.get<OrderItem>(`/orders/${id}`);
+}
+
+export function updateOrderOrderStatus(id: string, orderStatus: OrderStatus) {
+  return api.patch<OrderItem>(`/orders/${id}/status`, { orderStatus });
 }

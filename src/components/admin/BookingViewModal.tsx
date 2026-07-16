@@ -1,6 +1,6 @@
 import { Download, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import type { Booking, BookingStatus } from "@/hooks/useAdminData";
+import type { Booking, BookingStatus, OrderStatus } from "@/hooks/useAdminData";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 const UPLOADS_BASE = API_BASE.replace(/\/api\/?$/, "");
@@ -13,6 +13,12 @@ const statusStyles: Record<BookingStatus, string> = {
   Complete: "border-emerald-500/30 bg-emerald-500/5 text-emerald-400",
   "On Way": "border-cyan-500/30 bg-cyan-500/5 text-cyan-400",
   Delivered: "border-green-500/30 bg-green-500/5 text-green-400",
+};
+
+const orderStatusStyles: Record<OrderStatus, string> = {
+  "Model Complete": "border-emerald-500/30 bg-emerald-500/5 text-emerald-400",
+  Dispatched: "border-blue-500/30 bg-blue-500/5 text-blue-400",
+  Shipped: "border-purple-500/30 bg-purple-500/5 text-purple-400",
 };
 
 interface BookingViewModalProps {
@@ -38,9 +44,7 @@ export function BookingViewModal({ booking, open, onClose }: BookingViewModalPro
 
   if (!open) return null;
 
-  const imageUrl = booking.referenceImage
-    ? `${UPLOADS_BASE}${booking.referenceImage}`
-    : null;
+  const imageUrl = booking.referenceImage ? `${UPLOADS_BASE}${booking.referenceImage}` : null;
 
   const getFileName = (path: string) => {
     const parts = path.split("/");
@@ -74,6 +78,19 @@ export function BookingViewModal({ booking, open, onClose }: BookingViewModalPro
           {booking.modelName && <Field label="Model Name" value={booking.modelName} />}
           <Field label="Model Size" value={booking.modelSize} />
           <Field label="Status" value={booking.status} isStatus />
+          {booking.orderStatus && (
+            <div>
+              <span className="mb-1 block text-xs uppercase tracking-wider text-muted-foreground">
+                Order Status
+              </span>
+              <span
+                className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-medium ${orderStatusStyles[booking.orderStatus as OrderStatus] || ""}`}
+              >
+                <span className="size-1.5 rounded-full currentColor opacity-70" />
+                {booking.orderStatus}
+              </span>
+            </div>
+          )}
           <Field
             label="Submitted"
             value={
@@ -153,15 +170,7 @@ export function BookingViewModal({ booking, open, onClose }: BookingViewModalPro
   );
 }
 
-function Field({
-  label,
-  value,
-  isStatus,
-}: {
-  label: string;
-  value: string;
-  isStatus?: boolean;
-}) {
+function Field({ label, value, isStatus }: { label: string; value: string; isStatus?: boolean }) {
   return (
     <div>
       <span className="mb-1 block text-xs uppercase tracking-wider text-muted-foreground">
