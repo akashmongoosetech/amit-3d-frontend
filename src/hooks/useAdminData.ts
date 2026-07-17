@@ -1,32 +1,82 @@
 import { useCallback, useState, useEffect } from "react";
 import { api } from "@/lib/api";
 
-export interface DashboardStats {
-  label: string;
-  value: string;
-  trend: string;
-  trendUp: boolean;
+export interface DashboardSummary {
+  totalBookings: number;
+  totalOrders: number;
+  totalContacts: number;
+  activeProjects: number;
+  completedProjects: number;
+  deliveredModels: number;
+  pendingPayments: number;
+  bookingTrend: number;
+  orderTrend: number;
+  contactTrend: number;
+  newBookings: number;
+  newContacts: number;
 }
 
-interface RecentOrder {
+export interface ChartDataPoint {
+  date?: string;
+  month?: string;
+  year?: number;
+  count?: number;
+  bookings?: number;
+  orders?: number;
+  revenue?: number;
+  customers?: number;
+}
+
+export interface StatusDistItem {
+  status: string;
+  count: number;
+}
+
+export interface TopModelItem {
+  name: string;
+  count: number;
+}
+
+export interface DashboardCharts {
+  bookingStatusDist: StatusDistItem[];
+  orderStatusDist: StatusDistItem[];
+  monthlyBookings: ChartDataPoint[];
+  revenueVsOrders: ChartDataPoint[];
+  topModels: TopModelItem[];
+  dailyTrend30: ChartDataPoint[];
+  dailyTrend90: ChartDataPoint[];
+  customerGrowth: ChartDataPoint[];
+}
+
+export interface PipelineStage {
+  name: string;
+  count: number;
+  percentage: number;
+}
+
+export interface DashboardPipeline {
+  stages: PipelineStage[];
+  completionPercentage: number;
+  totalInPipeline: number;
+  inProgress: number;
+}
+
+export interface DashboardActivity {
   id: string;
-  customer: string;
-  product: string;
-  status: "Completed" | "Processing" | "Pending";
-  amount: string;
-  date: string;
-}
-
-interface ActivityItem {
+  type: "booking" | "contact";
   action: string;
   detail: string;
+  status: string;
   time: string;
 }
 
 export interface DashboardData {
-  stats: DashboardStats[];
-  recentOrders: RecentOrder[];
-  recentActivity: ActivityItem[];
+  summary: DashboardSummary;
+  charts: DashboardCharts;
+  recentOrders: OrderItem[];
+  recentContacts: Contact[];
+  activities: DashboardActivity[];
+  pipeline: DashboardPipeline;
 }
 
 export interface User {
@@ -80,22 +130,23 @@ export function useDashboardData() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const fetchData = useCallback(async (params?: Record<string, string>) => {
     setLoading(true);
-    api
-      .get<DashboardData>("/admin/dashboard")
-      .then((res) => {
-        setData(res);
-      })
-      .catch(() => {
-        setData(null);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    try {
+      const res = await api.get<DashboardData>("/admin/dashboard", params);
+      setData(res);
+    } catch {
+      setData(null);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  return { data, loading };
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return { data, loading, refetch: fetchData };
 }
 
 export function useUsers(search: string) {
