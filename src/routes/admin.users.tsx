@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Search, Plus, Users as UsersIcon } from "lucide-react";
+import { Search, Plus, Users as UsersIcon, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { EmptyState } from "@/components/admin/EmptyState";
 import { Badge } from "@/components/ui/badge";
 import { useUsers } from "@/hooks/useAdminData";
+import { useAdminAuth } from "@/context/AdminAuthContext";
+import { api } from "@/lib/api";
 import type { User } from "@/hooks/useAdminData";
 
 export const Route = createFileRoute("/admin/users")({
@@ -19,7 +21,24 @@ const inputClass =
 
 function UsersPage() {
   const [search, setSearch] = useState("");
-  const { data: users, loading } = useUsers(search);
+  const [deleting, setDeleting] = useState<string | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
+  const { data: users, loading } = useUsers(search, refreshKey);
+  const { user: currentUser } = useAdminAuth();
+
+  const handleDelete = async (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!window.confirm("Are you sure you want to delete this admin?")) return;
+    setDeleting(id);
+    try {
+      await api.del(`/admin/users/${id}`);
+      setRefreshKey((k) => k + 1);
+    } catch {
+      alert("Failed to delete user");
+    } finally {
+      setDeleting(null);
+    }
+  };
 
   return (
     <div>
@@ -62,36 +81,56 @@ function UsersPage() {
                   <th className="hidden px-5 py-3.5 font-medium sm:table-cell">Role</th>
                   <th className="px-5 py-3.5 font-medium">Status</th>
                   <th className="hidden px-5 py-3.5 font-medium md:table-cell">Joined</th>
+                  <th className="w-14 px-5 py-3.5 font-medium" />
                 </tr>
               </thead>
               <tbody>
-                {users.map((u: User) => (
-                  <tr
-                    key={u._id || u.email}
-                    className="border-b border-border last:border-0 hover:bg-card/20"
-                  >
-                    <td className="px-5 py-3.5 font-medium text-foreground">
-                      {u.firstName} {u.lastName}
-                    </td>
-                    <td className="px-5 py-3.5 text-muted-foreground">{u.email}</td>
-                    <td className="hidden px-5 py-3.5 text-muted-foreground sm:table-cell">
-                      {u.role}
-                    </td>
-                    <td className="px-5 py-3.5">
-                      <Badge variant={u.isActive ? "default" : "secondary"} className="text-[10px]">
-                        {u.isActive ? "Active" : "Inactive"}
-                      </Badge>
-                    </td>
-                    <td className="hidden px-5 py-3.5 text-muted-foreground md:table-cell">
-                      {u.createdAt
-                        ? new Date(u.createdAt).toLocaleDateString("en-IN", {
-                            month: "short",
-                            year: "numeric",
-                          })
-                        : "-"}
-                    </td>
-                  </tr>
-                ))}
+                {users.map((u: User) => {
+                  const isSelf = currentUser?._id === u._id;
+                  const isDeleting = deleting === u._id;
+                  return (
+                    <tr
+                      key={u._id || u.email}
+                      className="border-b border-border last:border-0 hover:bg-card/20"
+                    >
+                      <td className="px-5 py-3.5 font-medium text-foreground">
+                        {u.firstName} {u.lastName}
+                      </td>
+                      <td className="px-5 py-3.5 text-muted-foreground">{u.email}</td>
+                      <td className="hidden px-5 py-3.5 text-muted-foreground sm:table-cell">
+                        {u.role}
+                      </td>
+                      <td className="px-5 py-3.5">
+                        <Badge variant={u.isActive ? "default" : "secondary"} className="text-[10px]">
+                          {u.isActive ? "Active" : "Inactive"}
+                        </Badge>
+                      </td>
+                      <td className="hidden px-5 py-3.5 text-muted-foreground md:table-cell">
+                        {u.createdAt
+                          ? new Date(u.createdAt).toLocaleDateString("en-IN", {
+                              month: "short",
+                              year: "numeric",
+                            })
+                          : "-"}
+                      </td>
+                      <td className="px-5 py-3.5">
+                        <button
+                          type="button"
+                          disabled={isSelf || isDeleting}
+                          onClick={(e) => handleDelete(u._id, e)}
+                          className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-red-500/10 hover:text-red-400 disabled:pointer-events-none disabled:opacity-30"
+                          title={isSelf ? "Cannot delete yourself" : "Delete user"}
+                        >
+                          {isDeleting ? (
+                            <span className="size-4 animate-spin rounded-full border-2 border-red-400 border-t-transparent" />
+                          ) : (
+                            <Trash2 className="size-4" />
+                          )}
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

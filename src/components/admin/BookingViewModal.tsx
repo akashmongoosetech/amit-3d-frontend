@@ -1,4 +1,4 @@
-import { Download, X } from "lucide-react";
+import { Download, Maximize2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { Booking, BookingStatus, OrderStatus } from "@/hooks/useAdminData";
 
@@ -30,8 +30,19 @@ interface BookingViewModalProps {
 
 export function BookingViewModal({ booking, open, onClose }: BookingViewModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
+  const lightboxRef = useRef<HTMLDivElement>(null);
   const [imageError, setImageError] = useState(false);
   const [hovering, setHovering] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxOpen(false);
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [lightboxOpen]);
 
   useEffect(() => {
     if (!open) return;
@@ -117,21 +128,37 @@ export function BookingViewModal({ booking, open, onClose }: BookingViewModalPro
                 onMouseEnter={() => setHovering(true)}
                 onMouseLeave={() => setHovering(false)}
               >
-                <img
-                  src={imageUrl}
-                  alt="Model reference"
-                  className="w-full rounded-xl border border-border object-cover max-h-48 sm:max-h-64"
-                  onError={() => setImageError(true)}
-                />
+                <button
+                  type="button"
+                  className="block w-full text-left"
+                  onClick={() => setLightboxOpen(true)}
+                >
+                  <img
+                    src={imageUrl}
+                    alt="Model reference"
+                    className="w-full cursor-pointer rounded-xl border border-border object-cover max-h-48 sm:max-h-64 transition-opacity hover:opacity-90"
+                    onError={() => setImageError(true)}
+                  />
+                </button>
                 {hovering && (
-                  <a
-                    href={imageUrl}
-                    download={getFileName(booking.referenceImage)}
-                    className="absolute right-2 top-2 flex size-9 items-center justify-center rounded-lg bg-black/70 text-white opacity-0 transition-opacity duration-200 hover:bg-black/90 group-hover:opacity-100"
-                    title="Download image"
-                  >
-                    <Download className="size-4" />
-                  </a>
+                  <div className="absolute right-2 top-2 flex gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => setLightboxOpen(true)}
+                      className="flex size-9 items-center justify-center rounded-lg bg-black/70 text-white opacity-0 transition-opacity duration-200 hover:bg-black/90 group-hover:opacity-100"
+                      title="Preview full size"
+                    >
+                      <Maximize2 className="size-4" />
+                    </button>
+                    <a
+                      href={imageUrl}
+                      download={getFileName(booking.referenceImage)}
+                      className="flex size-9 items-center justify-center rounded-lg bg-black/70 text-white opacity-0 transition-opacity duration-200 hover:bg-black/90 group-hover:opacity-100"
+                      title="Download image"
+                    >
+                      <Download className="size-4" />
+                    </a>
+                  </div>
                 )}
               </div>
             </div>
@@ -167,6 +194,29 @@ export function BookingViewModal({ booking, open, onClose }: BookingViewModalPro
           </div>
         </div>
       </div>
+
+      {lightboxOpen && (
+        <div
+          ref={lightboxRef}
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+          onClick={(e) => {
+            if (e.target === lightboxRef.current) setLightboxOpen(false);
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => setLightboxOpen(false)}
+            className="absolute right-4 top-4 z-10 flex size-10 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
+          >
+            <X className="size-5" />
+          </button>
+          <img
+            src={imageUrl!}
+            alt="Model reference full size"
+            className="max-h-[90vh] max-w-[95vw] rounded-xl object-contain shadow-2xl"
+          />
+        </div>
+      )}
     </div>
   );
 }

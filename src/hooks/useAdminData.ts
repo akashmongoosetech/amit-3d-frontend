@@ -149,7 +149,7 @@ export function useDashboardData() {
   return { data, loading, refetch: fetchData };
 }
 
-export function useUsers(search: string) {
+export function useUsers(search: string, refreshKey?: number) {
   const [data, setData] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -166,7 +166,7 @@ export function useUsers(search: string) {
       .finally(() => {
         setLoading(false);
       });
-  }, [search]);
+  }, [search, refreshKey]);
 
   return { data, loading };
 }

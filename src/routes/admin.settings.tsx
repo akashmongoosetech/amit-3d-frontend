@@ -355,9 +355,10 @@ function SettingsPage() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Switch id="2fa" checked={twoFactor} onCheckedChange={setTwoFactor} />
+              <Switch id="2fa" checked={twoFactor} onCheckedChange={setTwoFactor} disabled />
               <Label htmlFor="2fa" className="text-sm text-muted-foreground">
                 Two-factor authentication
+                <span className="ml-1.5 rounded-full border border-accent/30 bg-accent/5 px-1.5 py-0.5 text-[10px] text-accent">Coming soon</span>
               </Label>
             </div>
           </div>
