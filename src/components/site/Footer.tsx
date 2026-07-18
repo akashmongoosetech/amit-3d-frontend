@@ -1,8 +1,9 @@
-import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+﻿import { Link } from "@tanstack/react-router";
+import { ArrowUpRight, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Reveal } from "./Reveal";
+import { api, ApiClientError } from "@/lib/api";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -17,6 +18,7 @@ const socials = ["Instagram", "LinkedIn", "X / Twitter", "Dribbble"];
 
 export function Footer() {
   const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   return (
     <footer className="relative overflow-hidden border-t border-border">
@@ -32,11 +34,23 @@ export function Footer() {
             </p>
             <form
               className="mt-8 flex max-w-sm items-center gap-2"
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
-                if (!email.trim()) return;
-                toast.success("You're on the list. Talk soon.");
-                setEmail("");
+                if (!email.trim() || submitting) return;
+                setSubmitting(true);
+                try {
+                  await api.post("/newsletter/subscribe", { email: email.trim() });
+                  toast.success("Thank you for subscribing! Please check your inbox.");
+                  setEmail("");
+                } catch (err) {
+                  if (err instanceof ApiClientError && err.statusCode === 409) {
+                    toast.error("This email is already subscribed.");
+                  } else {
+                    toast.error("Something went wrong. Please try again later.");
+                  }
+                } finally {
+                  setSubmitting(false);
+                }
               }}
             >
               <label htmlFor="newsletter" className="sr-only">
@@ -53,9 +67,10 @@ export function Footer() {
               />
               <button
                 type="submit"
-                className="btn-pill shrink-0 bg-primary px-5 py-3 text-sm text-primary-foreground hover:bg-accent hover:text-accent-foreground"
+                disabled={submitting}
+                className="btn-pill shrink-0 bg-primary px-5 py-3 text-sm text-primary-foreground hover:bg-accent hover:text-accent-foreground disabled:opacity-60"
               >
-                Subscribe
+                {submitting ? <Loader2 className="size-4 animate-spin" /> : "Subscribe"}
               </button>
             </form>
           </Reveal>
@@ -105,13 +120,13 @@ export function Footer() {
       <div className="container-site pb-6">
         <div className="flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
           <p>© {new Date().getFullYear()} Verto3D Studio. All rights reserved.</p>
-          <p>Los Angeles — Worldwide</p>
+          <p>INDIA — Worldwide 🇮🇳</p>
         </div>
       </div>
 
       <p
         aria-hidden
-        className="heading-display pointer-events-none select-none whitespace-nowrap text-center text-[22vw] leading-none text-foreground/[0.04]"
+        className="heading-display pointer-events-none select-none whitespace-nowrap text-center text-[22vw] leading-none text-foreground/4"
       >
         VERTO3D
       </p>

@@ -218,6 +218,58 @@ export function updateContactStatus(id: string, status: ContactStatus) {
   return api.patch<Contact>(`/contact/${id}/status`, { status });
 }
 
+export interface Subscriber {
+  _id: string;
+  email: string;
+  createdAt: string;
+}
+
+export interface SubscriberFilters {
+  search?: string;
+  page?: number;
+  limit?: number;
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
+}
+
+export interface SubscribersResponse {
+  subscribers: Subscriber[];
+  pagination: PaginationInfo;
+}
+
+export function useSubscribers() {
+  const [data, setData] = useState<Subscriber[]>([]);
+  const [pagination, setPagination] = useState<PaginationInfo | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const search = useCallback(async (filters: SubscriberFilters) => {
+    setLoading(true);
+    const params: Record<string, string> = {};
+    if (filters.search) params.search = filters.search.trim();
+    if (filters.page) params.page = String(filters.page);
+    if (filters.limit) params.limit = String(filters.limit);
+    if (filters.sortBy) params.sortBy = filters.sortBy;
+    if (filters.sortOrder) params.sortOrder = filters.sortOrder;
+
+    try {
+      const res = await api.get<SubscribersResponse>("/newsletter/subscribe", params);
+      setData(res.subscribers);
+      setPagination(res.pagination);
+    } catch {
+      setData([]);
+      setPagination(null);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  return { data, pagination, loading, search };
+}
+
+export function deleteSubscriber(id: string) {
+  return api.del<null>(`/newsletter/subscribe/${id}`);
+}
+
 export interface Booking {
   _id: string;
   name: string;
