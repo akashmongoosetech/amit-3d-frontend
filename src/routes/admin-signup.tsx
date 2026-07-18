@@ -81,19 +81,10 @@ function AdminSignupPage() {
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
-  const fileToBase64 = (file: File): Promise<string> =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const profileImage = profileFile ? await fileToBase64(profileFile) : undefined;
       await signup({
         firstName,
         lastName,
@@ -102,7 +93,8 @@ function AdminSignupPage() {
         username,
         password,
         confirmPassword,
-        profileImage,
+        profileImage: profileFile ? undefined : undefined,
+        profileImageFile: profileFile || undefined,
       });
       setFirstName("");
       setLastName("");

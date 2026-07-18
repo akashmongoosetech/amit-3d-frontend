@@ -271,7 +271,7 @@ function OrdersPage() {
               </thead>
               <tbody>
                 {display.map((o: OrderItem) => (
-                  <tr key={o._id} className="border-b border-border last:border-0 hover:bg-card/20">
+                  <tr key={o._id} className="cursor-pointer border-b border-border last:border-0 hover:bg-card/20" onClick={() => setViewOrder(o)}>
                     <td className="whitespace-nowrap px-5 py-3.5 text-xs font-medium text-muted-foreground">
                       {o._id.slice(-6).toUpperCase()}
                     </td>

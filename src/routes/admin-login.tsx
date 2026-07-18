@@ -1,4 +1,4 @@
-import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { ArrowUpRight, Eye, EyeOff } from "lucide-react";
 import { useState, useEffect, type FormEvent } from "react";
 import { toast } from "sonner";
@@ -105,6 +105,14 @@ function AdminLoginPage() {
                   {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
                 </button>
               </div>
+            </div>
+            <div className="flex justify-end">
+              <Link
+                to="/forgot-password"
+                className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground"
+              >
+                Forgot Password?
+              </Link>
             </div>
             <button
               type="submit"

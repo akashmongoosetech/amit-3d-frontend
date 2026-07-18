@@ -11,8 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookModelRouteImport } from './routes/book-model'
 import { Route as AdminSignupRouteImport } from './routes/admin-signup'
@@ -41,6 +43,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsRoute = ProductsRouteImport.update({
   id: '/products',
   path: '/products',
@@ -49,6 +56,11 @@ const ProductsRoute = ProductsRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -144,8 +156,10 @@ export interface FileRoutesByFullPath {
   '/admin-signup': typeof AdminSignupRoute
   '/book-model': typeof BookModelRoute
   '/contact': typeof ContactRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/pricing': typeof PricingRoute
   '/products': typeof ProductsRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
   '/admin/bookings': typeof AdminBookingsRoute
@@ -166,8 +180,10 @@ export interface FileRoutesByTo {
   '/admin-signup': typeof AdminSignupRoute
   '/book-model': typeof BookModelRoute
   '/contact': typeof ContactRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/pricing': typeof PricingRoute
   '/products': typeof ProductsRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
   '/admin/bookings': typeof AdminBookingsRoute
@@ -190,8 +206,10 @@ export interface FileRoutesById {
   '/admin-signup': typeof AdminSignupRoute
   '/book-model': typeof BookModelRoute
   '/contact': typeof ContactRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/pricing': typeof PricingRoute
   '/products': typeof ProductsRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
   '/admin/bookings': typeof AdminBookingsRoute
@@ -215,8 +233,10 @@ export interface FileRouteTypes {
     | '/admin-signup'
     | '/book-model'
     | '/contact'
+    | '/forgot-password'
     | '/pricing'
     | '/products'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/studio'
     | '/admin/bookings'
@@ -237,8 +257,10 @@ export interface FileRouteTypes {
     | '/admin-signup'
     | '/book-model'
     | '/contact'
+    | '/forgot-password'
     | '/pricing'
     | '/products'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/studio'
     | '/admin/bookings'
@@ -260,8 +282,10 @@ export interface FileRouteTypes {
     | '/admin-signup'
     | '/book-model'
     | '/contact'
+    | '/forgot-password'
     | '/pricing'
     | '/products'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/studio'
     | '/admin/bookings'
@@ -284,8 +308,10 @@ export interface RootRouteChildren {
   AdminSignupRoute: typeof AdminSignupRoute
   BookModelRoute: typeof BookModelRoute
   ContactRoute: typeof ContactRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
   PricingRoute: typeof PricingRoute
   ProductsRoute: typeof ProductsRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StudioRoute: typeof StudioRoute
   NewsSlugRoute: typeof NewsSlugRoute
@@ -310,6 +336,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products': {
       id: '/products'
       path: '/products'
@@ -322,6 +355,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -475,8 +515,10 @@ const rootRouteChildren: RootRouteChildren = {
   AdminSignupRoute: AdminSignupRoute,
   BookModelRoute: BookModelRoute,
   ContactRoute: ContactRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
   PricingRoute: PricingRoute,
   ProductsRoute: ProductsRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StudioRoute: StudioRoute,
   NewsSlugRoute: NewsSlugRoute,

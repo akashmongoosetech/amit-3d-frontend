@@ -149,26 +149,37 @@ export function useDashboardData() {
   return { data, loading, refetch: fetchData };
 }
 
+export interface UsersResponse {
+  admins: User[];
+  pagination: PaginationInfo;
+}
+
 export function useUsers(search: string, refreshKey?: number) {
   const [data, setData] = useState<User[]>([]);
+  const [pagination, setPagination] = useState<PaginationInfo | null>(null);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setLoading(true);
+    const params: Record<string, string> = { page: String(page), limit: "20" };
+    if (search) params.search = search;
     api
-      .get<User[]>("/admin/users", search ? { search } : undefined)
+      .get<UsersResponse>("/admin/users", params)
       .then((res) => {
-        setData(res);
+        setData(res.admins);
+        setPagination(res.pagination);
       })
       .catch(() => {
         setData([]);
+        setPagination(null);
       })
       .finally(() => {
         setLoading(false);
       });
-  }, [search, refreshKey]);
+  }, [search, refreshKey, page]);
 
-  return { data, loading };
+  return { data, pagination, loading, page, setPage };
 }
 
 export function useContacts() {

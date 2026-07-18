@@ -312,7 +312,7 @@ function BookingsPage() {
               </thead>
               <tbody>
                 {display.map((b: Booking) => (
-                  <tr key={b._id} className="border-b border-border last:border-0 hover:bg-card/20">
+                  <tr key={b._id} className="cursor-pointer border-b border-border last:border-0 hover:bg-card/20" onClick={() => setViewBooking(b)}>
                     <td className="whitespace-nowrap px-5 py-3.5 font-medium text-foreground">
                       {b.name}
                     </td>

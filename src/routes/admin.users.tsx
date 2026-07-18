@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Search, Plus, Users as UsersIcon, Trash2 } from "lucide-react";
+import { Search, Plus, Users as UsersIcon, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { PageHeader } from "@/components/admin/PageHeader";
 import { EmptyState } from "@/components/admin/EmptyState";
@@ -23,7 +23,7 @@ function UsersPage() {
   const [search, setSearch] = useState("");
   const [deleting, setDeleting] = useState<string | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
-  const { data: users, loading } = useUsers(search, refreshKey);
+  const { data: users, pagination, loading, page, setPage } = useUsers(search, refreshKey);
   const { user: currentUser } = useAdminAuth();
 
   const handleDelete = async (id: string, e: React.MouseEvent) => {
@@ -38,6 +38,11 @@ function UsersPage() {
     } finally {
       setDeleting(null);
     }
+  };
+
+  const handleSearch = (value: string) => {
+    setSearch(value);
+    setPage(1);
   };
 
   return (
@@ -58,7 +63,7 @@ function UsersPage() {
           <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <input
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value)}
             placeholder="Search users…"
             className={inputClass}
             style={{ paddingLeft: "2.5rem" }}
@@ -70,7 +75,7 @@ function UsersPage() {
         <div className="flex items-center justify-center py-16 text-sm text-muted-foreground">
           Loading users...
         </div>
-      ) : users.length > 0 ? (
+      ) : users.length > 0 ? (<>
         <div className="overflow-x-auto rounded-xl border border-border">
           <div className="min-w-160">
             <table className="w-full text-sm">
@@ -135,7 +140,34 @@ function UsersPage() {
             </table>
           </div>
         </div>
-      ) : (
+        {pagination && pagination.totalPages > 1 && (
+          <div className="mt-4 flex items-center justify-between text-sm text-muted-foreground">
+            <span>
+              Page {pagination.page} of {pagination.totalPages} ({pagination.totalRecords} total)
+            </span>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                disabled={page <= 1}
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                className="btn-pill inline-flex items-center gap-1 border border-border px-3 py-1.5 text-xs hover:border-foreground disabled:opacity-40"
+              >
+                <ChevronLeft className="size-3.5" />
+                Previous
+              </button>
+              <button
+                type="button"
+                disabled={page >= (pagination.totalPages || 1)}
+                onClick={() => setPage((p) => p + 1)}
+                className="btn-pill inline-flex items-center gap-1 border border-border px-3 py-1.5 text-xs hover:border-foreground disabled:opacity-40"
+              >
+                Next
+                <ChevronRight className="size-3.5" />
+              </button>
+            </div>
+          </div>
+        )}
+      </>) : (
         <EmptyState
           icon={UsersIcon}
           title="No users found"

@@ -33,6 +33,7 @@ export interface SignupPayload {
   password: string;
   confirmPassword: string;
   profileImage?: string;
+  profileImageFile?: File;
 }
 
 const AdminAuthContext = createContext<AdminAuthContextValue | null>(null);
@@ -155,16 +156,33 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signup = useCallback(async (payload: SignupPayload) => {
-    if (payload.profileImage && isValidImage(payload.profileImage)) {
-      saveProfileImage(payload.profileImage);
-      setProfileImageState(payload.profileImage);
+    if (payload.profileImageFile) {
+      const formData = new FormData();
+      formData.append("firstName", payload.firstName);
+      formData.append("lastName", payload.lastName);
+      formData.append("email", payload.email);
+      formData.append("mobile", payload.mobile);
+      formData.append("username", payload.username);
+      formData.append("password", payload.password);
+      formData.append("confirmPassword", payload.confirmPassword);
+      formData.append("profileImage", payload.profileImageFile);
+
+      const data = await api.postFormData<{ admin: AdminUser; token: string }>("/auth/signup", formData);
+      saveSession({ token: data.token, admin: data.admin });
+      setToken(data.token);
+      setUser(data.admin);
+    } else {
+      if (payload.profileImage && isValidImage(payload.profileImage)) {
+        saveProfileImage(payload.profileImage);
+        setProfileImageState(payload.profileImage);
+      }
+
+      const data = await api.post<{ admin: AdminUser; token: string }>("/auth/signup", payload);
+
+      saveSession({ token: data.token, admin: data.admin });
+      setToken(data.token);
+      setUser(data.admin);
     }
-
-    const data = await api.post<{ admin: AdminUser; token: string }>("/auth/signup", payload);
-
-    saveSession({ token: data.token, admin: data.admin });
-    setToken(data.token);
-    setUser(data.admin);
   }, []);
 
   const logout = useCallback(async () => {

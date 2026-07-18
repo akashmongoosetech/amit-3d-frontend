@@ -28,7 +28,7 @@ const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const bookingSchema = z.object({
   name: z.string().min(1, "Full name is required"),
   email: z.string().email("Please enter a valid email"),
-  phone: z.string().min(7, "Phone number is required"),
+  mobile: z.string().min(7, "Mobile number is required"),
   modelSize: z.string().min(1, "Please select a model size"),
   message: z
     .string()
@@ -79,7 +79,7 @@ function BookModelPage() {
     defaultValues: {
       name: "",
       email: "",
-      phone: "",
+      mobile: "",
       modelSize: "",
       message: "",
     },
@@ -111,7 +111,7 @@ function BookModelPage() {
       const formData = new FormData();
       formData.append("name", values.name);
       formData.append("email", values.email);
-      formData.append("mobile", values.phone);
+      formData.append("mobile", values.mobile);
       formData.append("modelSize", values.modelSize);
       formData.append("message", values.message);
       if (fileInputRef.current?.files?.[0]) {
@@ -266,7 +266,7 @@ function BookModelPage() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <FormField
                     control={form.control}
-                    name="phone"
+                    name="mobile"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-sm text-muted-foreground">
